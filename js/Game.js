@@ -8,7 +8,7 @@ class Game{
         this.towers = [];
         this.walls = [];
         this.mobs = [];
-        this.path = [];
+        this.route = [];
         this.maze = [
             ['w','s','w','w','T','w','w','e','w'],
             ['w',' ','w',' ',' ',' ','T',' ','w'],
@@ -18,8 +18,50 @@ class Game{
             ['w',' ',' ',' ','w',' ',' ',' ','T'],
             ['w','w','w','T','w','w','w','w','w']
         ];
+        this.findPath = function(input) {
+            let nodes = input;
+            for(let i = 0; i<input.length; i++){
+                for(let j = 0; j<input[i].length; j++){
+                    if(input[i][j] === 'w' || input[i][j] === 'T') {
+                        nodes[i][j] = new Node(input[i][j], j, i, true);
+                        nodes[i][j].cost = -1;
+                    }else{
+                        nodes[i][j] = new Node(input[i][j], j, i, false);
+                    }
+                }
+            }
+            this.graph = new Graph(nodes);
+            let queue = [];
+            this.graph.start.cost = 0;
+            this.graph.start.estimatedCost = this.graph.start.calculateCost(this.graph.end);
+            queue.push(this.graph.start);
+            while (queue.length > 0) {
+                let node = queue.shift();
+                if (node === this.graph.end) {
+                    return this.graph.buildPath();
+                }
+                let edges = node.edges;
+                for (let i = 0; i < edges.length; i++) {
+                    let edgeNode = edges[i];
+                    let cost = node.cost + node.calculateCost(edgeNode);
+                    if ((!queue.includes(edgeNode) && !edgeNode.visited) || cost < edgeNode.cost) {
+                        edgeNode.parent = node;
+                        edgeNode.cost = cost;
+                        edgeNode.estimatedCost = edgeNode.calculateCost(this.graph.end);
+                        if (edgeNode.visited) {
+                            edgeNode.visited = false;
+                        }
+                        if (!queue.includes(edgeNode)) {
+                            queue.push(edgeNode);
+                        }
+                    }
+                }
+                node.visited = true;
+            }
+            return null;
+        };
         for(let i = 0, y=0; i<this.maze.length; i++, y+=120){
-            for(let j = 0, x=0; j<this.maze[0].length; j++, x+=120){
+            for(let j = 0, x=0; j<this.maze[i].length; j++, x+=120){
                 if(this.maze[i][j] === 'T') {
                     this.towers.push(new Tower("img/Tower.png", x, y, 118, 118, 40));
                     this.walls.push(new Wall("img/wall.jpg", x, y, 118, 118, 40));
@@ -28,21 +70,14 @@ class Game{
                 }
             }
         }
-        for(let j = 0; j<this.maze[0].length; j++){
-            for(let i = 0; i<this.maze.length; i++){
-                if(this.maze[i][j] === 's' || this.maze[i][j] === ' ' || this.maze[i][j] === 'e'){
-                    this.path.push([i,j]);
-                }
-            }
-        }
-        for(let i = 0; i<120; i+=120){
-            let mob = new Mob("img/mob_sprites.png", 120,i, 80,56,18, [
-                [25,30],
+        this.route = this.findPath(this.maze);
+        for(let i = 0; i<120; i+=60){
+            this.mobs.push(new Mob("img/mob_sprites.png", 120,i, 80,56,18,
+                [[25,30],
                 [0,5],
                 [13,17],
-                [36, 40]
-            ],this.path);
-            this.mobs.push(mob);
+                [36, 40]],
+                this.route));
         }
     }
     animate(){
@@ -74,7 +109,7 @@ class SpriteSheet{
         };
         this.image.src = src;
         this.sequence = [];
-        this.current = 0;
+        this.current_node = 0;
         this.counter = 0;
     }
     update(){
@@ -83,14 +118,14 @@ class SpriteSheet{
             this.sequence.push(f);
         }
         if(this.counter == (this.frameSpeed - 1)){
-            this.current = (this.current + 1) % this.sequence.length;
+            this.current_node = (this.current_node + 1) % this.sequence.length;
         }
         this.counter = (this.counter + 1) % this.frameSpeed;
 
     }
     animate(ctx){
-        let row = Math.floor(this.sequence[this.current] / this.frames);
-        let col = Math.floor(this.sequence[this.current] % this.frames);
+        let row = Math.floor(this.sequence[this.current_node] / this.frames);
+        let col = Math.floor(this.sequence[this.current_node] % this.frames);
         ctx.drawImage(
             this.image,
             col * this.frameWidth, row * this.frameHeight,
@@ -125,7 +160,9 @@ class Mob extends Sprite{
     constructor(src, x,y, frameWidth,frameHeight, frameSpeed, scenes, path){
         super(src,x,y, frameWidth,frameHeight, frameSpeed, scenes);
         this.path = path;
-        this.current = 0;
+        this.current_node = this.path.pop();
+        this.current_node.x *= 120;
+        this.current_node.y *= 120;
     }
     down(){
         this.spritesheet.current_scene = 0;
@@ -152,34 +189,30 @@ class Mob extends Sprite{
         }
     }
     move(){
+        if(this.path.length >= 0) {
+            if(this.spritesheet.x === this.current_node.x && this.spritesheet.y === this.current_node.y) {
+                this.current_node = this.path.pop();
+                this.current_node.x *= 120;
+                this.current_node.y *= 120;
+            }else{
+                if(this.spritesheet.x < this.current_node.x){
+                    this.right();
+                }else if(this.spritesheet.x > this.current_node.x){
+                    this.left();
+                }else if(this.spritesheet.y < this.current_node.y){
+                    this.down();
+                }else if(this.spritesheet.y > this.current_node.y){
+                    this.up();
+                }
+            }
+        }
     }
     animate(ctx){
         this.move();
         this.spritesheet.update();
         this.spritesheet.animate(ctx);
+        ctx.fillText("X: "+this.spritesheet.x + " Y: " +this.spritesheet.y ,this.spritesheet.x, this.spritesheet.y);
+        ctx.fillText("CX: " + this.current_node.x + " CY: "+ this.current_node.y ,this.spritesheet.x, this.spritesheet.y + 10);
+        ctx.fillText("Path Length: " +this.path.length ,this.spritesheet.x, this.spritesheet.y - 10);
     }
 }
-var Key_Codes = {
-    32: 'space',
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down',
-    87: 'w',
-    65: 'a',
-    83: 's',
-    68: 'd'
-};
-var Key_Status = [];
-document.onkeydown = function (e) {
-    if(Key_Codes[e.keyCode]){
-        e.preventDefault();
-        Key_Status[Key_Codes[e.keyCode]] = true
-    }
-};
-document.onkeyup = function (e) {
-    if(Key_Codes[e.keyCode]){
-        e.preventDefault();
-        Key_Status[Key_Codes[e.keyCode]] = false;
-    }
-};

@@ -6,5 +6,5 @@ $(document).ready(function () {
     function animate() {
         game.animate();
     }
-    setInterval(animate, 10);
+    setInterval(animate, 100);
 });
