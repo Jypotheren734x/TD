@@ -29,9 +29,9 @@ class Graph {
                 if (!this.nodes[row][col].isWall) {
                     this.current_node = this.nodes[row][col];
                     this.buildEdges(this.nodes[row][col]);
-                    if (this.nodes[row][col].value === 's') {
+                    if (this.nodes[row][col].value === 'e') {
                         this.start = this.nodes[row][col];
-                    } else if (this.nodes[row][col].value === 'e') {
+                    } else if (this.nodes[row][col].value === 's') {
                         this.end = this.nodes[row][col];
                     }
                 }

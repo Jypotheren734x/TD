@@ -7,8 +7,7 @@ class Game{
         this.ctx = this.canvas.getContext("2d");
         this.towers = [];
         this.walls = [];
-        this.mobs = [];
-        this.route = [];
+        this.waves = [];
         this.maze = [
             ['w','s','w','w','T','w','w','e','w'],
             ['w',' ','w',' ',' ',' ','T',' ','w'],
@@ -28,23 +27,16 @@ class Game{
                 }
             }
         }
-        for(let i = 0; i<120; i+=60){
-            this.maze = [
-                ['w','s','w','w','T','w','w','e','w'],
-                ['w',' ','w',' ',' ',' ','T',' ','w'],
-                ['T',' ','w',' ','T',' ','w',' ','T'],
-                ['w',' ','T',' ','w',' ','w',' ','w'],
-                ['w',' ','w',' ','T',' ','T',' ','w'],
-                ['w',' ',' ',' ','w',' ',' ',' ','T'],
-                ['w','w','w','T','w','w','w','w','w']
-            ];
-            this.mobs.push(new Mob("img/mob_sprites.png", 120,i, 80,56,18,
-                [[25,30],
-                [0,5],
-                [13,17],
-                [36, 40]],
-                findPath(this.maze)));
-        }
+        this.path = findPath(this.maze);
+        this.waves.push(
+            new Wave(
+                new Mob("img/mob_sprites.png", 120,0, 80,56,18,[[25,30],[0,5],[13,17],[36, 40]],this.path),
+                new Mob("img/mob_sprites.png", 120,0, 80,56,18,[[25,30],[0,5],[13,17],[36, 40]],this.path),
+                new Mob("img/mob_sprites.png", 120,0, 80,56,18,[[25,30],[0,5],[13,17],[36, 40]],this.path),
+                new Mob("img/mob_sprites.png", 120,0, 80,56,18,[[25,30],[0,5],[13,17],[36, 40]],this.path),
+                new Mob("img/mob_sprites.png", 120,0, 80,56,18,[[25,30],[0,5],[13,17],[36, 40]],this.path)
+            )
+        );
     }
     animate(){
         this.canvas.width = this.canvas.width;
@@ -54,9 +46,7 @@ class Game{
         for(let i = 0; i<this.towers.length; i++) {
             this.towers[i].animate(this.ctx);
         }
-        for(let i = 0; i<this.mobs.length; i++) {
-            this.mobs[i].animate(this.ctx);
-        }
+        this.waves[0].attack(this.ctx);
     }
 }
 class SpriteSheet{
@@ -83,7 +73,7 @@ class SpriteSheet{
         for(let f = this.scenes[this.current_scene][0]; f<=this.scenes[this.current_scene][1]; f++){
             this.sequence.push(f);
         }
-        if(this.counter == (this.frameSpeed - 1)){
+        if(this.counter === (this.frameSpeed - 1)){
             this.current_node = (this.current_node + 1) % this.sequence.length;
         }
         this.counter = (this.counter + 1) % this.frameSpeed;
@@ -113,9 +103,6 @@ class Tower extends Sprite{
     constructor(src, x,y, frameWidth,frameHeight, frameSpeed){
         super(src,x,y, frameWidth,frameHeight, frameSpeed, [[0,7]]);
     }
-    attack(){
-
-    }
 }
 class Wall extends Sprite{
     constructor(src, x,y, frameWidth,frameHeight, frameSpeed){
@@ -125,10 +112,9 @@ class Wall extends Sprite{
 class Mob extends Sprite{
     constructor(src, x,y, frameWidth,frameHeight, frameSpeed, scenes, path){
         super(src,x,y, frameWidth,frameHeight, frameSpeed, scenes);
-        this.path = path;
-        this.current_node = this.path.pop();
-        this.current_node.x *= 120;
-        this.current_node.y *= 120;
+        this.current_node = path[0];
+        this.targetX = this.current_node.x * 120;
+        this.targetY = this.current_node.y * 120;
     }
     down(){
         this.spritesheet.current_scene = 0;
@@ -155,19 +141,19 @@ class Mob extends Sprite{
         }
     }
     move(){
-        if(this.path.length >= 0) {
-            if(this.spritesheet.x === this.current_node.x && this.spritesheet.y === this.current_node.y) {
-                this.current_node = this.path.pop();
-                this.current_node.x *= 120;
-                this.current_node.y *= 120;
+        if(this.current_node !== null) {
+            if(this.spritesheet.x === this.targetX && this.spritesheet.y === this.targetY) {
+                this.current_node = this.current_node.parent;
+                this.targetX = this.current_node.x * 120;
+                this.targetY = this.current_node.y * 120;
             }else{
-                if(this.spritesheet.x < this.current_node.x){
+                if(this.spritesheet.x < this.targetX){
                     this.right();
-                }else if(this.spritesheet.x > this.current_node.x){
+                }else if(this.spritesheet.x > this.targetX){
                     this.left();
-                }else if(this.spritesheet.y < this.current_node.y){
+                }else if(this.spritesheet.y < this.targetY){
                     this.down();
-                }else if(this.spritesheet.y > this.current_node.y){
+                }else if(this.spritesheet.y > this.targetY){
                     this.up();
                 }
             }
@@ -178,7 +164,22 @@ class Mob extends Sprite{
         this.spritesheet.update();
         this.spritesheet.animate(ctx);
         ctx.fillText("X: "+this.spritesheet.x + " Y: " +this.spritesheet.y ,this.spritesheet.x, this.spritesheet.y);
-        ctx.fillText("CX: " + this.current_node.x + " CY: "+ this.current_node.y ,this.spritesheet.x, this.spritesheet.y + 10);
-        ctx.fillText("Path Length: " +this.path.length ,this.spritesheet.x, this.spritesheet.y - 10);
+        ctx.fillText("CX: " + this.targetX + " CY: "+ this.targetY ,this.spritesheet.x, this.spritesheet.y + 10);
+    }
+}
+class Wave{
+    constructor(){
+        this.mobs = [];
+        let space = 0;
+        for(let i = 0; i<arguments.length; i++){
+            space -= 120;
+            arguments[i].spritesheet.y = space;
+            this.mobs.push(arguments[i]);
+        }
+    }
+    attack(ctx){
+        for(let i = 0; i<this.mobs.length; i++){
+            this.mobs[i].animate(ctx);
+        }
     }
 }
