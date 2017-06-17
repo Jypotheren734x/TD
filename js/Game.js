@@ -28,14 +28,22 @@ class Game{
                 }
             }
         }
-        this.route = findPath(this.maze);
         for(let i = 0; i<120; i+=60){
+            this.maze = [
+                ['w','s','w','w','T','w','w','e','w'],
+                ['w',' ','w',' ',' ',' ','T',' ','w'],
+                ['T',' ','w',' ','T',' ','w',' ','T'],
+                ['w',' ','T',' ','w',' ','w',' ','w'],
+                ['w',' ','w',' ','T',' ','T',' ','w'],
+                ['w',' ',' ',' ','w',' ',' ',' ','T'],
+                ['w','w','w','T','w','w','w','w','w']
+            ];
             this.mobs.push(new Mob("img/mob_sprites.png", 120,i, 80,56,18,
                 [[25,30],
                 [0,5],
                 [13,17],
                 [36, 40]],
-                this.route));
+                findPath(this.maze)));
         }
     }
     animate(){
