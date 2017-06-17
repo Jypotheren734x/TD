@@ -18,48 +18,6 @@ class Game{
             ['w',' ',' ',' ','w',' ',' ',' ','T'],
             ['w','w','w','T','w','w','w','w','w']
         ];
-        this.findPath = function(input) {
-            let nodes = input;
-            for(let i = 0; i<input.length; i++){
-                for(let j = 0; j<input[i].length; j++){
-                    if(input[i][j] === 'w' || input[i][j] === 'T') {
-                        nodes[i][j] = new Node(input[i][j], j, i, true);
-                        nodes[i][j].cost = -1;
-                    }else{
-                        nodes[i][j] = new Node(input[i][j], j, i, false);
-                    }
-                }
-            }
-            this.graph = new Graph(nodes);
-            let queue = [];
-            this.graph.start.cost = 0;
-            this.graph.start.estimatedCost = this.graph.start.calculateCost(this.graph.end);
-            queue.push(this.graph.start);
-            while (queue.length > 0) {
-                let node = queue.shift();
-                if (node === this.graph.end) {
-                    return this.graph.buildPath();
-                }
-                let edges = node.edges;
-                for (let i = 0; i < edges.length; i++) {
-                    let edgeNode = edges[i];
-                    let cost = node.cost + node.calculateCost(edgeNode);
-                    if ((!queue.includes(edgeNode) && !edgeNode.visited) || cost < edgeNode.cost) {
-                        edgeNode.parent = node;
-                        edgeNode.cost = cost;
-                        edgeNode.estimatedCost = edgeNode.calculateCost(this.graph.end);
-                        if (edgeNode.visited) {
-                            edgeNode.visited = false;
-                        }
-                        if (!queue.includes(edgeNode)) {
-                            queue.push(edgeNode);
-                        }
-                    }
-                }
-                node.visited = true;
-            }
-            return null;
-        };
         for(let i = 0, y=0; i<this.maze.length; i++, y+=120){
             for(let j = 0, x=0; j<this.maze[i].length; j++, x+=120){
                 if(this.maze[i][j] === 'T') {
@@ -70,7 +28,7 @@ class Game{
                 }
             }
         }
-        this.route = this.findPath(this.maze);
+        this.route = findPath(this.maze);
         for(let i = 0; i<120; i+=60){
             this.mobs.push(new Mob("img/mob_sprites.png", 120,i, 80,56,18,
                 [[25,30],

@@ -102,3 +102,45 @@ class Graph {
         }
     }
 }
+function findPath(input) {
+    let nodes = input;
+    for(let i = 0; i<input.length; i++){
+        for(let j = 0; j<input[i].length; j++){
+            if(input[i][j] === 'w' || input[i][j] === 'T') {
+                nodes[i][j] = new Node(input[i][j], j, i, true);
+                nodes[i][j].cost = -1;
+            }else{
+                nodes[i][j] = new Node(input[i][j], j, i, false);
+            }
+        }
+    }
+    this.graph = new Graph(nodes);
+    let queue = [];
+    this.graph.start.cost = 0;
+    this.graph.start.estimatedCost = this.graph.start.calculateCost(this.graph.end);
+    queue.push(this.graph.start);
+    while (queue.length > 0) {
+        let node = queue.shift();
+        if (node === this.graph.end) {
+            return this.graph.buildPath();
+        }
+        let edges = node.edges;
+        for (let i = 0; i < edges.length; i++) {
+            let edgeNode = edges[i];
+            let cost = node.cost + node.calculateCost(edgeNode);
+            if ((!queue.includes(edgeNode) && !edgeNode.visited) || cost < edgeNode.cost) {
+                edgeNode.parent = node;
+                edgeNode.cost = cost;
+                edgeNode.estimatedCost = edgeNode.calculateCost(this.graph.end);
+                if (edgeNode.visited) {
+                    edgeNode.visited = false;
+                }
+                if (!queue.includes(edgeNode)) {
+                    queue.push(edgeNode);
+                }
+            }
+        }
+        node.visited = true;
+    }
+    return null;
+}
