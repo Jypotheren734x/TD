@@ -2,9 +2,9 @@
  * Created by nick on 6/16/17.
  */
 $(document).ready(function () {
-    let game = new Game();
-    function animate() {
-        game.animate();
+    let map = new Map();
+    function draw() {
+        map.build();
     }
-    setInterval(animate, 10);
+    setInterval(draw,10);
 });
