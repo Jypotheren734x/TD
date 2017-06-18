@@ -106,7 +106,7 @@ function findPath(input) {
     let nodes = input;
     for(let i = 0; i<input.length; i++){
         for(let j = 0; j<input[i].length; j++){
-            if(input[i][j] === 'w' || input[i][j] === 'T') {
+            if(input[i][j] === 'x') {
                 nodes[i][j] = new Node(input[i][j], j, i, true);
                 nodes[i][j].cost = -1;
             }else{

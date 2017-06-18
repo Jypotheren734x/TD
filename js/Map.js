@@ -3,12 +3,10 @@
  */
 class Map {
     constructor() {
-        this.canvas = $('canvas')[0];
-        this.ctx = this.canvas.getContext("2d");
-        this.towers = [];
         this.walls = [];
         this.path = [];
-        this.maze = [
+        this.maze = {
+            background: [
             ['S', 'S',   'S','S',  'cru','t',  't','t','t',  'clu','S','S'],
             ['S', 'S',   'S','S',  'l',  'ctl','b','b','ctr','r','S','S'],
             ['S', 'S',   'S','S',  'l',  'r',  'S','S','l',  'r','S','S'],
@@ -16,8 +14,17 @@ class Map {
             ['S', 'cru', 't','t', 'cbr','r',  'S','S','l',  'r','S','S'],
             ['S', 'l',  'ctl','b','b',  'cld','S','S','l',  'cbl','t','t'],
             ['S', 'l',  'r',  'S','S',  'S',  'S','S','crd','b','b','b'],
-            ['S', 'l',  'r',  'S','S',  'S',  'S','S','S','S','S','S']
-        ];
+            ['S', 'l',  'r',  'S','S',  'S',  'S','S','S','S','S','S']],
+            path:findPath([
+                ['x','x','x','x','x','x','x','x','x','x','x','x'],
+                ['x','x','x','x','x',' ',' ',' ',' ',' ','x','x'],
+                ['x','x','x','x','x',' ','x','x','x',' ','x','x'],
+                ['x','x','x','x','x',' ','x','x','x',' ','x','x'],
+                ['x','x',' ',' ',' ',' ','x','x','x',' ','x','x'],
+                ['x','x',' ','x','x','x','x','x','x',' ','x','x'],
+                ['x','x',' ','x','x','x','x','x','x',' ',' ','g'],
+                ['x','x','s','x','x','x','x','x','x','x','x','x']])
+        };
         this.types = {
             walls: {
                 green: {
@@ -41,39 +48,11 @@ class Map {
                 brown: {x: 4, y: 2},
                 tan: {x: 4, y: 8},
                 silver: {x: 4, y: 11}
-            },
-            towers: {
-                cannon: {
-                    level_1: {x: 20, y: 11, mx: 20, my: 8},
-                    level_2: {x: 21, y: 11, mx: 20, my: 8}
-                },
-                missile_1: {x: 20, y: 10, mx: 21, my: 8},
-                missile_2: {x: 20, y: 9, mx: 21, my: 8}
-            },
-            mobs: {
-                type1: {},
-                type2: {},
-                type3: {},
-                type4: {},
-                tank1: {},
-                tank2: {}
             }
         };
-        for (let i = 0, y = 0; i < this.maze.length; i++, y += 64) {
-            for (let j = 0, x = 0; j < this.maze[i].length; j++, x += 64) {
-                switch (this.maze[i][j]) {
-                    case 'C':
-                        this.towers.push(new Tower(this.types.towers.cannon.level_1, x, y));
-                        this.walls.push(new Wall(this.types.walls.green.solid, x, y));
-                        break;
-                    case 'm':
-                        this.towers.push(new Tower(this.types.towers.missile_1, x, y));
-                        this.walls.push(new Wall(this.types.walls.green.solid, x, y));
-                        break;
-                    case'M':
-                        this.towers.push(new Tower(this.types.towers.missile_2, x, y));
-                        this.walls.push(new Wall(this.types.walls.green.solid, x, y));
-                        break;
+        for (let i = 0, y = 0; i < this.maze.background.length; i++, y ++) {
+            for (let j = 0, x = 0; j < this.maze.background[i].length; j++, x ++) {
+                switch (this.maze.background[i][j]) {
                     case 'S':
                         this.walls.push(new Wall(this.types.walls.green.solid, x, y));
                         break;
@@ -125,16 +104,12 @@ class Map {
             }
         }
     }
-
-    build() {
+    build(ctx) {
         for (let i = 0; i < this.walls.length; i++) {
-            this.walls[i].draw(this.ctx);
+            this.walls[i].draw(ctx);
         }
         for (let i = 0; i < this.path.length; i++) {
-            this.path[i].draw(this.ctx);
-        }
-        for (let i = 0; i < this.towers.length; i++) {
-            this.towers[i].draw(this.ctx);
+            this.path[i].draw(ctx);
         }
     }
 }

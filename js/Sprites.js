@@ -18,7 +18,9 @@ class Sprite{
 }
 class Tower extends Sprite{
     constructor(type,x,y){
-        super(x,y,64,64,type.x*64,type.y*64,64,64);
+        super(x*64,y*64,64,64,type.x*64,type.y*64,64,64);
+        this.type = type.type;
+        this.level = type.level;
         this.mx = type.mx*64;
         this.my = type.my*64;
     }
@@ -29,7 +31,7 @@ class Tower extends Sprite{
 }
 class Wall extends Sprite{
     constructor(type,x,y){
-        super(x,y,64,64,type.x*64,type.y*64,64,64);
+        super(x*64,y*64,64,64,type.x*64,type.y*64,64,64);
     }
     draw(ctx){
         ctx.drawImage(this.image, this.sx,this.sy,this.swidth,this.sheight, this.x, this.y, this.width, this.height);
@@ -37,12 +39,18 @@ class Wall extends Sprite{
 }
 class Path extends Sprite{
     constructor(type,x,y){
-        super(x,y,64,64,type.x*64,type.y*64,64,64);
+        super(x*64,y*64,64,64,type.x*64,type.y*64,64,64);
     }
     draw(ctx){
         ctx.drawImage(this.image, this.sx,this.sy,this.swidth,this.sheight, this.x, this.y, this.width, this.height);
     }
 }
 class Mob extends Sprite{
+    constructor(type,x,y){
+        super(x*64,y*64,64,64,type.x*64,type.y*64,64,64);
+    }
+    draw(ctx){
+        ctx.drawImage(this.image, this.sx,this.sy,this.swidth,this.sheight, this.x, this.y, this.width, this.height);
+    }
 
 }
