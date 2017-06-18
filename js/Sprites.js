@@ -3,42 +3,46 @@
  */
 
 class Sprite{
-    constructor(src,x,y,width,height){
-        this.canvas = $('canvas')[0];
-        this.ctx = this.canvas.getContext("2d");
+    constructor(x,y,width,height,sx,sy,swidth,sheight){
         this.image = new Image();
-        this.image.src = src;
+        this.image.src = "img/Tilesheet/towerDefense_tilesheet.png";
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.sx =sx;
+        this.sy = sy;
+        this.swidth = swidth;
+        this.sheight = sheight;
     }
 }
 class Tower extends Sprite{
-    constructor(src,x,y, width,height){
-        super(src,x,y,width,height);
-        this.mount = new Image();
-        this.mount.src ="img/PNG/Default size/towerDefense_tile181.png";
-        this.attack = {
-            src: "",
-            atk: 10
-        };
+    constructor(type,x,y){
+        super(x,y,64,64,type.x*64,type.y*64,64,64);
+        this.mx = type.mx*64;
+        this.my = type.my*64;
     }
-    draw(){
-        this.ctx.drawImage(this.mount, this.x, this.y+10, this.width, this.height);
-        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    draw(ctx){
+        ctx.drawImage(this.image, this.mx,this.my,this.swidth,this.sheight, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.sx,this.sy,this.swidth,this.sheight, this.x, this.y-10, this.width, this.height);
     }
 }
 class Wall extends Sprite{
-    constructor(src,x,y,width,height){
-        super(src,x,y,width,height);
+    constructor(type,x,y){
+        super(x,y,64,64,type.x*64,type.y*64,64,64);
     }
-    draw(){
-        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    draw(ctx){
+        ctx.drawImage(this.image, this.sx,this.sy,this.swidth,this.sheight, this.x, this.y, this.width, this.height);
     }
 }
 class Path extends Sprite{
-    constructor(src,x,y,width,height){
-        super(src,x,y,width,height);
+    constructor(type,x,y){
+        super(x,y,64,64,type.x*64,type.y*64,64,64);
     }
+    draw(ctx){
+        ctx.drawImage(this.image, this.sx,this.sy,this.swidth,this.sheight, this.x, this.y, this.width, this.height);
+    }
+}
+class Mob extends Sprite{
+
 }
