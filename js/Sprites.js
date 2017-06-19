@@ -147,7 +147,7 @@ class Mob extends Sprite {
     draw(ctx) {
         if(!this.atEnd) {
             this.move(ctx);
-            ctx.fillText("Health: " + this.health, this.x, this.y + 20);
+            // ctx.fillText("Health: " + this.health, this.x, this.y + 20);
         }
         // ctx.fillText("X: "+this.x + " Y: " +this.y ,this.x, this.y);
         // ctx.fillText("CX: " + this.targetX + " CY: "+ this.targetY ,this.x, this.y + 10);

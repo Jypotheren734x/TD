@@ -12,6 +12,7 @@ class Game {
         this.current_wave = -1;
         this.idle = true;
         this.lives = 100;
+        this.kills = 0;
         this.tower_list = [
             new Tower(types.towers.cannon.level_1, 12, 0.5),
             new Tower(types.towers.missile.level_1, 12, 1.5),
@@ -45,7 +46,7 @@ class Game {
         this.map.build(this.ctx);
         if(this.current_wave >= 0) {
             this.ctx.fillText("TOWERS Lives: " + this.lives, this.tower_list[0].x, 10);
-            this.ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.waves[this.current_wave].mobs_dead, this.tower_list[0].x, 20);
+            this.ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, this.tower_list[0].x, 20);
         }
         this.tower_list.forEach(function (tower) {
             tower.draw(self.ctx);
@@ -59,6 +60,7 @@ class Game {
             if (this.waves[this.current_wave].complete) {
                 this.idle = true;
                 this.lives -= this.waves[this.current_wave].lives_lost;
+                this.kills += this.waves[this.current_wave].mobs_dead;
             }else {
                 self.waves[self.current_wave].attack(self.ctx);
                 this.towers.forEach(function (tower) {
@@ -92,7 +94,7 @@ class Wave{
     }
     attack(ctx){
         let self = this;
-        if(this.mobs_dead === this.mobs.length){
+        if(this.mobs_dead+this.lives_lost === this.mobs.length){
             this.complete = true;
             console.log("Wave Cleared");
         }
@@ -103,10 +105,6 @@ class Wave{
                     mob.draw(ctx);
                     if (mob.atEnd) {
                         self.lives_lost++;
-                        if (!mob.isDead) {
-                            mob.isDead = true;
-                            self.mobs_dead++;
-                        }
                     }
                 }else{
                     if(!mob.isDead) {

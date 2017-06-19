@@ -61,8 +61,8 @@
           <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/Game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
+                <state relative-caret-position="726">
+                  <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
                   <folding>
                     <element signature="n#!!doc;n#Game#0" expanded="false" />
                   </folding>
@@ -83,8 +83,8 @@
           <file leaf-file-name="Sprites.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/Sprites.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="726">
-                  <caret line="75" column="32" lean-forward="true" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+                <state relative-caret-position="1662">
+                  <caret line="150" column="9" lean-forward="true" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
                   <folding>
                     <element signature="n#!!doc;n#Sprite#0" expanded="false" />
                   </folding>
@@ -162,8 +162,8 @@
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/js/Map.js" />
         <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/js/Sprites.js" />
         <option value="$PROJECT_DIR$/js/helpers.js" />
+        <option value="$PROJECT_DIR$/js/Sprites.js" />
         <option value="$PROJECT_DIR$/js/Game.js" />
       </list>
     </option>
@@ -411,7 +411,7 @@
       <workItem from="1497724381694" duration="3521000" />
       <workItem from="1497752653730" duration="6525000" />
       <workItem from="1497801369304" duration="9896000" />
-      <workItem from="1497813642062" duration="27766000" />
+      <workItem from="1497813642062" duration="28203000" />
     </task>
     <task id="LOCAL-00001" summary="Working mazing">
       <created>1497647633418</created>
@@ -424,7 +424,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78816000" />
+    <option name="totallyTimeSpent" value="79253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -646,16 +646,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/Sprites.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="75" column="32" lean-forward="true" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!doc;n#Sprite#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/helpers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="674">
@@ -664,10 +654,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/Sprites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1662">
+          <caret line="150" column="9" lean-forward="true" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc;n#Sprite#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="37" column="35" lean-forward="false" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
+        <state relative-caret-position="726">
+          <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc;n#Game#0" expanded="false" />
           </folding>
