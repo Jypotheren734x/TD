@@ -38,33 +38,35 @@ class Graph {
             }
         }
     }
+
     buildEdges(n) {
-        if (this.getDown() !== undefined){
-            if(!this.getDown().isWall) {
+        if (this.getDown() !== undefined) {
+            if (!this.getDown().isWall) {
                 let temp = this.getDown();
                 n.edges.push(temp);
             }
         }
-        if (this.getUp() !== undefined){
-            if(!this.getUp().isWall) {
+        if (this.getUp() !== undefined) {
+            if (!this.getUp().isWall) {
                 let temp = this.getUp();
                 n.edges.push(temp);
             }
         }
-        if (this.getLeft() !== undefined){
-            if(!this.getLeft().isWall) {
+        if (this.getLeft() !== undefined) {
+            if (!this.getLeft().isWall) {
                 let temp = this.getLeft();
                 n.edges.push(temp);
             }
         }
-        if (this.getRight() !== undefined){
-            if(!this.getRight().isWall) {
+        if (this.getRight() !== undefined) {
+            if (!this.getRight().isWall) {
                 let temp = this.getRight();
                 n.edges.push(temp);
             }
         }
     }
-    buildPath(){
+
+    buildPath() {
         let path = [];
         let node = this.end;
         while (node.parent !== null) {
@@ -73,43 +75,47 @@ class Graph {
         }
         return path;
     }
+
     getRight() {
-        if(this.nodes[this.current_node.y] !== undefined){
+        if (this.nodes[this.current_node.y] !== undefined) {
             return this.nodes[this.current_node.y][this.current_node.x + 1];
-        }else{
+        } else {
             return undefined;
         }
     }
+
     getLeft() {
-        if(this.nodes[this.current_node.y] !== undefined){
+        if (this.nodes[this.current_node.y] !== undefined) {
             return this.nodes[this.current_node.y][this.current_node.x - 1];
-        }else{
+        } else {
             return undefined;
         }
     }
+
     getUp() {
-        if(this.nodes[this.current_node.y - 1] !== undefined){
+        if (this.nodes[this.current_node.y - 1] !== undefined) {
             return this.nodes[this.current_node.y - 1][this.current_node.x];
-        }else{
+        } else {
             return undefined;
         }
     }
+
     getDown() {
-        if(this.nodes[this.current_node.y + 1] !== undefined){
+        if (this.nodes[this.current_node.y + 1] !== undefined) {
             return this.nodes[this.current_node.y + 1][this.current_node.x];
-        }else{
+        } else {
             return undefined;
         }
     }
 }
 function findPath(input) {
     let nodes = input;
-    for(let i = 0; i<input.length; i++){
-        for(let j = 0; j<input[i].length; j++){
-            if(input[i][j] === 'x') {
+    for (let i = 0; i < input.length; i++) {
+        for (let j = 0; j < input[i].length; j++) {
+            if (input[i][j] === 'x') {
                 nodes[i][j] = new Node(input[i][j], j, i, true);
                 nodes[i][j].cost = -1;
-            }else{
+            } else {
                 nodes[i][j] = new Node(input[i][j], j, i, false);
             }
         }

@@ -3,8 +3,10 @@
  */
 $(document).ready(function () {
     let game = new Game();
-    function run() {
+    function mainLoop() {
+        game.update();
         game.run();
+        requestAnimationFrame(mainLoop);
     }
-    setInterval(run, 10);
+    requestAnimationFrame(mainLoop);
 });

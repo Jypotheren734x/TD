@@ -1,4 +1,9 @@
 canvas {
-  border: solid black; }
-
+    border: solid black;
+}
+#start{
+    top: 0;
+    right: 0;
+    position: absolute;
+}
 /*# sourceMappingURL=main.css.map */

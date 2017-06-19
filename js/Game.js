@@ -1,52 +1,122 @@
 /**
  * Created by komar on 6/18/2017.
  */
-class Game{
-    constructor(){
+class Game {
+    constructor() {
+        let self = this;
         this.canvas = $('canvas')[0];
         this.ctx = this.canvas.getContext("2d");
         this.map = new Map();
         this.towers = [];
-        this.mobs = [];
-        this.types = {
-            towers: {
-                cannon: {
-                    level_1: {type:"Cannon",level:1,x: 19, y: 10, mx: 19, my: 7},
-                    level_2: {type:"Cannon",level:2,x: 20, y: 10, mx: 19, my: 7}
-                },
-                missile_1: {type:"Missile-1",level:1,x: 19, y: 9, mx: 19, my: 7},
-                missile_2: {type:"Missile-2",level:1,x: 19, y: 8, mx: 19, my: 7}
-            },
-            mobs: {
-                soldier: {type:"Soldier",level:1,x: 15, y: 10},
-                robot: {type:"Robot",level:1,x: 16, y: 10},
-                super_soldier: {type:"Super-Soldier",level:1,x: 17, y: 10},
-                cyborg: {type:"Cyborg",level:1,x: 18, y: 10}
-            }
-        };
+        this.waves = [];
+        this.current_wave = -1;
+        this.idle = true;
+        this.lives = 100;
         this.tower_list = [
-            new Tower(this.types.towers.cannon.level_1,12,0.5),
-            new Tower(this.types.towers.missile_1,12,1.5),
-            new Tower(this.types.towers.missile_2,12,2.5),
+            new Tower(types.towers.cannon.level_1, 12, 0.5),
+            new Tower(types.towers.missile.level_1, 12, 1.5),
         ];
-        for(let i = 0; i<5; i++){
-            this.mobs.push(new Mob(this.types.mobs.soldier, 1, 7))
+        for (let i = 0, y = 0; i < this.map.maze.tower_locations.length; i++, y++) {
+            for (let j = 0, x = 0; j < this.map.maze.tower_locations[i].length; j++, x++) {
+                switch (this.map.maze.tower_locations[i][j]) {
+                    case 'T':
+                        this.towers.push(new Tower(types.towers.cannon.level_2, x, y));
+                        break;
+                }
+            }
         }
+        this.waves.push(new Wave(15,types.mobs.super_soldier,this.map.maze.path));
+        this.waves.push(new Wave(15,types.mobs.cyborg,this.map.maze.path));
+        this.waves.push(new Wave(15,types.mobs.robot,this.map.maze.path));
+        this.waves.push(new Wave(15,types.mobs.robot,this.map.maze.path));
+        console.log(this.waves);
+        $('#start').click(function () {
+             self.idle = false;
+             if(self.current_wave +1 < self.waves.length) {
+                 self.current_wave++;
+             }else{
+                 alert("YOU WIN!");
+             }
+        })
     }
-    run(){
+    update(){
+        let self = this;
         this.canvas.width = this.canvas.width;
         this.map.build(this.ctx);
-        this.ctx.fillText("TOWERS", this.tower_list[0].x,10);
-        for(let i = 0; i<this.towers.length; i++){
-            this.towers[i].draw(this.ctx);
+        if(this.current_wave >= 0) {
+            this.ctx.fillText("TOWERS Lives: " + this.lives, this.tower_list[0].x, 10);
+            this.ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.waves[this.current_wave].mobs_dead, this.tower_list[0].x, 20);
         }
-        for(let i = 0; i<this.mobs.length; i++){
-            this.mobs[i].draw(this.ctx);
+        this.tower_list.forEach(function (tower) {
+            tower.draw(self.ctx);
+            self.ctx.fillText(tower.type, tower.x + 64, tower.y);
+            self.ctx.fillText("Level: " + tower.level, tower.x + 64, tower.y + 10);
+        });
+    }
+    run() {
+        let self = this;
+        if (!this.idle) {
+            if (this.waves[this.current_wave].complete) {
+                this.idle = true;
+                this.lives -= this.waves[this.current_wave].lives_lost;
+            }else {
+                self.waves[self.current_wave].attack(self.ctx);
+                this.towers.forEach(function (tower) {
+                    tower.target(self.ctx, self.waves[self.current_wave].getLeadMob());
+                });
+            }
+        } else {
+            this.towers.forEach(function (tower) {
+                tower.draw(self.ctx);
+            });
         }
-        for(let i = 0; i<this.tower_list.length; i++){
-            this.tower_list[i].draw(this.ctx);
-            this.ctx.fillText(this.tower_list[i].type, this.tower_list[i].x + 64,this.tower_list[i].y);
-            this.ctx.fillText("Level: "+this.tower_list[i].level, this.tower_list[i].x + 64,this.tower_list[i].y+10);
+    }
+}
+class Wave{
+    constructor(size, type, path){
+        this.mobs = [];
+        this.mobs_dead = 0;
+        this.lead_mob = 0;
+        this.lives_lost = 0;
+        this.complete = false;
+        for (let i = 0; i < size; i++) {
+            if(i%3 === 0){
+                this.mobs.push(new Mob(type, 3, 15 + i, path));
+            }else{
+                this.mobs.push(new Mob(type, 3, 15 + i, path));
+            }
         }
+    }
+    getLeadMob(){
+        return this.mobs[this.lead_mob];
+    }
+    attack(ctx){
+        let self = this;
+        if(this.mobs_dead === this.mobs.length){
+            this.complete = true;
+            console.log("Wave Cleared");
+        }
+        this.lead_mob = 0;
+        this.lives_lost = 0;
+        this.mobs.forEach(function (mob) {
+                if (mob.health > 0) {
+                    mob.draw(ctx);
+                    if (mob.atEnd) {
+                        self.lives_lost++;
+                        if (!mob.isDead) {
+                            mob.isDead = true;
+                            self.mobs_dead++;
+                        }
+                    }
+                }else{
+                    if(!mob.isDead) {
+                        mob.isDead = true;
+                        self.mobs_dead++;
+                    }
+                    if(self.lead_mob+1 < self.mobs.length) {
+                        self.lead_mob++;
+                    }
+                }
+        });
     }
 }
