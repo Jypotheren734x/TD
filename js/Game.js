@@ -12,6 +12,7 @@ class Game {
             active_slot: null
         };
         this.current_wave = -1;
+        this.money = 200;
         this.idle = true;
         this.lives = 100;
         this.kills = 0;
@@ -47,6 +48,7 @@ class Game {
         this.map.build();
         ctx.fillText("TOWERS Lives: " + this.lives, 0, 10);
         ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, 0, 20);
+        ctx.fillText("Money: " + this.money, 0, 30);
     }
     run() {
         let self = this;
@@ -55,6 +57,7 @@ class Game {
                 this.idle = true;
                 this.lives -= this.waves[this.current_wave].lives_lost;
                 this.kills += this.waves[this.current_wave].mobs_dead;
+                this.money = this.kills * 100;
             }else {
                 self.waves[self.current_wave].attack(self.ctx);
                 this.towers.forEach(function (tower) {
@@ -71,17 +74,23 @@ class Game {
             if (this.tower_slots.active_slot !== null) {
                 if (this.tower_slots.active_slot.towers[0].clicked()) {
                     let t = this.tower_slots.active_slot.towers[0];
-                    t.x -= 64;
-                    this.towers.push(t);
-                    this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                    this.tower_slots.active_slot = null;
+                    if (this.money - t.cost >= 0) {
+                        t.x -= 64;
+                        this.money -= t.cost;
+                        this.towers.push(t);
+                        this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
+                        this.tower_slots.active_slot = null;
+                    }
                 } else if (this.tower_slots.active_slot.towers[1].clicked()) {
                     let t = this.tower_slots.active_slot.towers[1];
-                    t.x -= 64;
-                    t.y -= 64;
-                    this.towers.push(t);
-                    this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                    this.tower_slots.active_slot = null;
+                    if (this.money - t.cost >= 0) {
+                        t.x -= 64;
+                        t.y -= 64;
+                        this.money -= t.cost;
+                        this.towers.push(t);
+                        this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
+                        this.tower_slots.active_slot = null;
+                    }
                 } else {
                     this.tower_slots.active_slot.drawTowers();
                 }
@@ -92,34 +101,6 @@ class Game {
                 }
             }
         }
-    }
-}
-class Tower_Slot extends Sprite{
-    constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
-        this.rx = x;
-        this.ry = y;
-        this.width = 64;
-        this.height = 64;
-        this.towers = [
-            new Tower(types.towers.cannon.level_1, this.rx + 1, this.ry),
-            new Tower(types.towers.missile.level_1, this.rx + 1, this.ry + 1),
-        ];
-    }
-
-    drawTowers() {
-        ctx.fillRect(this.towers[0].x + 64, this.towers[0], this.towers[0].width, this.towers[0].height + this.towers[1].height);
-        this.towers[0].draw();
-        ctx.fillText(this.towers[0].type, this.towers[0].x + 64, this.towers[0].y + 20);
-        ctx.fillText("Level: " + this.towers[0].level, this.towers[0].x + 64, this.towers[0].y + 30);
-        ctx.fillText("Atk: " + this.towers[0].attack, this.towers[0].x + 64, this.towers[0].y + 40);
-        this.towers[1].draw();
-        ctx.fillText(this.towers[1].type, this.towers[1].x + 64, this.towers[1].y + 20);
-        ctx.fillText("Level: " + this.towers[1].level, this.towers[1].x + 64, this.towers[1].y + 30);
-        ctx.fillText("Atk: " + this.towers[1].attack, this.towers[1].x + 64, this.towers[1].y + 40);
-    }
-    draw() {
-        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
 }
 class Wave{

@@ -32,6 +32,7 @@ class Tower extends Sprite {
         this.type = type.type;
         this.level = type.level;
         this.attack = this.level * 10;
+        this.cost = type.cost;
         this.mx = type.mx * 64;
         this.my = type.my * 64;
     }
@@ -49,6 +50,38 @@ class Tower extends Sprite {
     }
     draw() {
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+    }
+}
+
+class Tower_Slot extends Sprite {
+    constructor(type, x, y) {
+        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        this.rx = x;
+        this.ry = y;
+        this.width = 64;
+        this.height = 64;
+        this.towers = [
+            new Tower(types.towers.cannon.level_1, this.rx + 1, this.ry),
+            new Tower(types.towers.missile.level_1, this.rx + 1, this.ry + 1),
+        ];
+    }
+
+    drawTowers() {
+        ctx.rect(this.towers[0].x + 64, this.towers[0], this.towers[0].width, this.towers[0].height + this.towers[1].height);
+        this.towers[0].draw();
+        ctx.fillText(this.towers[0].type, this.towers[0].x + 64, this.towers[0].y + 20);
+        ctx.fillText("Level: " + this.towers[0].level, this.towers[0].x + 64, this.towers[0].y + 30);
+        ctx.fillText("Atk: " + this.towers[0].attack, this.towers[0].x + 64, this.towers[0].y + 40);
+        ctx.fillText("Cost: " + this.towers[0].cost, this.towers[0].x + 64, this.towers[0].y + 50);
+        this.towers[1].draw();
+        ctx.fillText(this.towers[1].type, this.towers[1].x + 64, this.towers[1].y + 20);
+        ctx.fillText("Level: " + this.towers[1].level, this.towers[1].x + 64, this.towers[1].y + 30);
+        ctx.fillText("Atk: " + this.towers[1].attack, this.towers[1].x + 64, this.towers[1].y + 40);
+        ctx.fillText("Cost: " + this.towers[1].cost, this.towers[1].x + 64, this.towers[1].y + 50);
+    }
+
+    draw() {
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
 }

@@ -38,6 +38,7 @@ function mousePosition (e) {
 canvas.onclick = function (e) {
     mouse = mousePosition(e);
 };
+ctx.fillStyle = "#fff";
 
 var TO_RADIANS = Math.PI / 180;
 var types = {
@@ -69,14 +70,14 @@ var types = {
     },
     towers: {
         cannon: {
-            level_1: {type: "Cannon", level: 1, x: 19, y: 10, mx: 19, my: 7},
-            level_2: {type: "Cannon", level: 2, x: 20, y: 10, mx: 19, my: 7}
+            level_1: {type: "Cannon", level: 1, cost: 100, x: 19, y: 10, mx: 19, my: 7},
+            level_2: {type: "Cannon", level: 2, cost: 200, x: 20, y: 10, mx: 19, my: 7}
         },
         missile: {
-            level_1:{type: "Missile", level: 1, x: 19, y: 9, mx: 19, my: 7},
-            level_2:{type: "Missile", level: 2, x: 20, y: 9, mx: 19, my: 7},
-            level_3:{type: "Missile", level: 3, x: 21, y: 9, mx: 19, my: 7},
-            level_4:{type: "Missile", level: 4, x: 22, y: 9, mx: 19, my: 7}
+            level_1: {type: "Missile", level: 1, cost: 100, x: 19, y: 9, mx: 19, my: 7},
+            level_2: {type: "Missile", level: 2, cost: 200, x: 20, y: 9, mx: 19, my: 7},
+            level_3: {type: "Missile", level: 3, cost: 300, x: 21, y: 9, mx: 19, my: 7},
+            level_4: {type: "Missile", level: 4, cost: 400, x: 22, y: 9, mx: 19, my: 7}
         }
     },
     mobs: {
