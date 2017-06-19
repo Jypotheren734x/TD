@@ -44,10 +44,8 @@ class Game {
         let self = this;
         this.canvas.width = this.canvas.width;
         this.map.build(this.ctx);
-        if(this.current_wave >= 0) {
-            this.ctx.fillText("TOWERS Lives: " + this.lives, this.tower_list[0].x, 10);
-            this.ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, this.tower_list[0].x, 20);
-        }
+        this.ctx.fillText("TOWERS Lives: " + this.lives, this.tower_list[0].x, 10);
+        this.ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, this.tower_list[0].x, 20);
         this.tower_list.forEach(function (tower) {
             tower.draw(self.ctx);
             self.ctx.fillText(tower.type, tower.x + 64, tower.y);
