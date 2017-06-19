@@ -15,8 +15,10 @@ class Sprite {
         this.swidth = swidth;
         this.sheight = sheight;
     }
-
-    rotate(ctx, angle) {
+    clicked(){
+        return ((mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
+    }
+    rotate(angle) {
         ctx.save();
         ctx.translate(this.x + this.swidth / 2, this.y + this.sheight / 2);
         ctx.rotate(angle * TO_RADIANS);
@@ -34,18 +36,18 @@ class Tower extends Sprite {
         this.my = type.my * 64;
     }
 
-    target(ctx, target) {
+    target(target) {
         let center=[this.x + this.swidth / 2, this.y + this.sheight / 2];
         let offsetY = target.x - center[0];
         let offsetX = target.y - center[1];
         let degrees = Math.atan2(offsetY,-offsetX) * (180/Math.PI);
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
-        this.rotate(ctx, degrees);
+        this.rotate(degrees);
         if(target.health > 0) {
             target.health-=this.attack;
         }
     }
-    draw(ctx) {
+    draw() {
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
@@ -55,7 +57,7 @@ class Wall extends Sprite {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
     }
 
-    draw(ctx) {
+    draw() {
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
 }
@@ -64,7 +66,7 @@ class Path extends Sprite {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
     }
 
-    draw(ctx) {
+    draw() {
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
 }
@@ -80,49 +82,46 @@ class Mob extends Sprite {
         this.atEnd = false;
     }
 
-    up(ctx) {
+    up() {
         if(this.y-this.speed > this.targetY) {
             this.y -= this.speed;
         }else{
             this.y = this.targetY;
         }
-        this.rotate(ctx, 270)
+        this.rotate(270)
     }
 
-    down(ctx) {
+    down() {
 
         if(this.y+this.speed < this.targetY) {
             this.y += this.speed;
         }else{
             this.y = this.targetY;
         }
-        this.rot
-        this.rotate(ctx, 90);
+        this.rotate(90);
     }
 
-    left(ctx) {
+    left() {
 
         if(this.x-this.speed > this.targetX) {
             this.x -= this.speed;
         }else{
             this.x = this.targetX;
         }
-        this.rot
-        this.rotate(ctx, 180);
+        this.rotate(180);
     }
 
-    right(ctx) {
+    right() {
 
         if(this.x+this.speed < this.targetX) {
             this.x += this.speed;
         }else{
             this.x = this.targetX;
         }
-        this.rot
-        this.rotate(ctx, 0);
+        this.rotate(0);
     }
 
-    move(ctx) {
+    move() {
         if (this.current_node.parent !== null) {
             if (this.x === this.targetX && this.y === this.targetY) {
                 this.current_node = this.current_node.parent;
@@ -130,13 +129,13 @@ class Mob extends Sprite {
                 this.targetY = this.current_node.y * 32;
             } else {
                 if (this.x < this.targetX) {
-                    this.right(ctx);
+                    this.right();
                 } else if (this.x > this.targetX) {
-                    this.left(ctx);
+                    this.left();
                 } else if (this.y < this.targetY) {
-                    this.down(ctx);
+                    this.down();
                 } else if (this.y > this.targetY) {
-                    this.up(ctx);
+                    this.up();
                 }
             }
         }else{
@@ -144,9 +143,9 @@ class Mob extends Sprite {
         }
     }
 
-    draw(ctx) {
+    draw() {
         if(!this.atEnd) {
-            this.move(ctx);
+            this.move();
             // ctx.fillText("Health: " + this.health, this.x, this.y + 20);
         }
         // ctx.fillText("X: "+this.x + " Y: " +this.y ,this.x, this.y);

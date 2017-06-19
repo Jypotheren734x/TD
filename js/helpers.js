@@ -25,6 +25,20 @@ document.onkeyup = function (e) {
         Key_Status[Key_Codes[e.keyCode]] = false;
     }
 };
+var canvas = $('canvas')[0];
+var ctx = canvas.getContext("2d");
+var mouse = {x:1920,y:1080};
+var bounds = canvas.getBoundingClientRect();
+function mousePosition (e) {
+   return {
+       x: e.clientX - bounds.left,
+       y: e.clientY - bounds.top
+    }
+}
+canvas.onclick = function (e) {
+    mouse = mousePosition(e);
+};
+
 var TO_RADIANS = Math.PI / 180;
 var types = {
     walls: {
@@ -43,6 +57,9 @@ var types = {
             curve_right_down: {x: 3, y: 1},
             curve_left_down: {x: 4, y: 1},
         }
+    },
+    ux:{
+      empty:{x:18,y:0}
     },
     path: {
         green: {x: 4, y: 5},

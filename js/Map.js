@@ -96,12 +96,12 @@ class Map {
         }
     }
 
-    build(ctx) {
+    build() {
         this.walls.forEach(function (wall) {
-            wall.draw(ctx);
+            wall.draw();
         });
         this.path.forEach(function (path) {
-            path.draw(ctx);
+            path.draw();
         });
     }
 }

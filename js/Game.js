@@ -4,24 +4,21 @@
 class Game {
     constructor() {
         let self = this;
-        this.canvas = $('canvas')[0];
-        this.ctx = this.canvas.getContext("2d");
         this.map = new Map();
         this.towers = [];
         this.waves = [];
+        this.tower_slots = [];
+        this.tower_selectors = [];
         this.current_wave = -1;
         this.idle = true;
         this.lives = 100;
         this.kills = 0;
-        this.tower_list = [
-            new Tower(types.towers.cannon.level_1, 12, 0.5),
-            new Tower(types.towers.missile.level_1, 12, 1.5),
-        ];
         for (let i = 0, y = 0; i < this.map.maze.tower_locations.length; i++, y++) {
             for (let j = 0, x = 0; j < this.map.maze.tower_locations[i].length; j++, x++) {
                 switch (this.map.maze.tower_locations[i][j]) {
                     case 'T':
-                        this.towers.push(new Tower(types.towers.cannon.level_2, x, y));
+                        this.tower_slots.push(new Tower_Slot(types.ux.empty, x, y));
+                        this.tower_selectors.push(new Tower_Selector(x, y));
                         break;
                 }
             }
@@ -38,19 +35,14 @@ class Game {
              }else{
                  alert("YOU WIN!");
              }
-        })
+        });
     }
     update(){
         let self = this;
-        this.canvas.width = this.canvas.width;
-        this.map.build(this.ctx);
-        this.ctx.fillText("TOWERS Lives: " + this.lives, this.tower_list[0].x, 10);
-        this.ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, this.tower_list[0].x, 20);
-        this.tower_list.forEach(function (tower) {
-            tower.draw(self.ctx);
-            self.ctx.fillText(tower.type, tower.x + 64, tower.y);
-            self.ctx.fillText("Level: " + tower.level, tower.x + 64, tower.y + 10);
-        });
+        canvas.width = canvas.width;
+        this.map.build();
+        ctx.fillText("TOWERS Lives: " + this.lives, 0, 10);
+        ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, 0, 20);
     }
     run() {
         let self = this;
@@ -62,13 +54,57 @@ class Game {
             }else {
                 self.waves[self.current_wave].attack(self.ctx);
                 this.towers.forEach(function (tower) {
-                    tower.target(self.ctx, self.waves[self.current_wave].getLeadMob());
+                    tower.target(self.waves[self.current_wave].getLeadMob());
                 });
             }
         } else {
             this.towers.forEach(function (tower) {
-                tower.draw(self.ctx);
+                tower.draw();
             });
+            for(let i = 0; i<this.tower_slots.length; i++){
+                this.tower_slots[i].draw();
+                if(this.tower_slots[i].clicked()) {
+                    if(this.tower_selectors.selected === undefined) {
+                        this.tower_selectors[i].draw();
+                    }
+                }
+            }
+        }
+    }
+}
+class Tower_Slot extends Sprite{
+    constructor(type, x, y) {
+        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+    }
+    draw() {
+        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+    }
+}
+class Tower_Selector{
+    constructor(x,y){
+        this.rx = x;
+        this.ry = y;
+        this.width = 64;
+        this.height = 64;
+        this.towers = [
+            new Tower(types.towers.cannon.level_1, this.rx+1, this.ry),
+            new Tower(types.towers.missile.level_1, this.rx+1,this.ry+1),
+        ];
+    }
+    draw(){
+        this.towers[0].draw();
+        ctx.fillText(this.towers[0].type, this.towers[0].x + 64, this.towers[0].y + 20);
+        ctx.fillText("Level: " + this.towers[0].level, this.towers[0].x + 64, this.towers[0].y + 30);
+        ctx.fillText("Atk: " + this.towers[0].attack, this.towers[0].x + 64, this.towers[0].y + 40);
+        this.towers[1].draw();
+        ctx.fillText(this.towers[1].type, this.towers[1].x + 64, this.towers[1].y + 20);
+        ctx.fillText("Level: " + this.towers[1].level, this.towers[1].x + 64, this.towers[1].y + 30);
+        ctx.fillText("Atk: " + this.towers[1].attack, this.towers[1].x + 64, this.towers[1].y + 40);
+        if(this.towers[0].clicked()){
+            this.selected = this.towers[0];
+        }
+        if(this.towers[1].clicked()){
+            this.selected = this.towers[1];
         }
     }
 }
@@ -90,7 +126,7 @@ class Wave{
     getLeadMob(){
         return this.mobs[this.lead_mob];
     }
-    attack(ctx){
+    attack(){
         let self = this;
         if(this.mobs_dead+this.lives_lost === this.mobs.length){
             this.complete = true;
@@ -100,7 +136,7 @@ class Wave{
         this.lives_lost = 0;
         this.mobs.forEach(function (mob) {
                 if (mob.health > 0) {
-                    mob.draw(ctx);
+                    mob.draw();
                     if (mob.atEnd) {
                         self.lives_lost++;
                     }
