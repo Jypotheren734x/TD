@@ -10,7 +10,8 @@ var Key_Codes = {
     87: 'w',
     65: 'a',
     83: 's',
-    68: 'd'
+    68: 'd',
+    27: 'esc'
 };
 var Key_Status = [];
 document.onkeydown = function (e) {
@@ -35,13 +36,38 @@ function mousePosition(e) {
         y: e.clientY - bounds.top
     }
 }
-canvas.onclick = function (e) {
-    mouse = mousePosition(e);
-};
 ctx.fillStyle = "#fff";
-
+function digits(n){
+    let array = [];
+    while(n >= 1){
+        let num = Math.floor(n % 10);
+        array.push(num);
+        n /= 10;
+    }
+    array.reverse();
+    return array;
+}
 var TO_RADIANS = Math.PI / 180;
 var types = {
+    numbers:{
+        0:{x:0,y:12},
+        1:{x:1,y:12},
+        2:{x:2,y:12},
+        3:{x:3,y:12},
+        4:{x:4,y:12},
+        5:{x:5,y:12},
+        6:{x:6,y:12},
+        7:{x:7,y:12},
+        8:{x:8,y:12},
+        9:{x:9,y:12}
+    },
+    symbols:{
+        percent:{x:10,y:12},
+        $:{x:11,y:12},
+        colon:{x:12,y:12},
+        plus:{x:13,y:12},
+        period:{x:14,y:12},
+    },
     walls: {
         green: {
             solid: {value: 'S', x: 1, y: 1},
@@ -76,6 +102,7 @@ var types = {
                 cost: 100,
                 attack: 10,
                 attack_speed: 1,
+                range: 2,
                 upgrade_cost: 200,
                 x: 19,
                 y: 10,
@@ -89,6 +116,7 @@ var types = {
                 level: 2,
                 cost: 200,
                 attack: 20,
+                range: 2,
                 attack_speed: 1,
                 upgrade_cost: 0,
                 x: 20,
@@ -103,6 +131,7 @@ var types = {
                 level: 1,
                 cost: 100,
                 attack: 15,
+                range: 5,
                 attack_speed: 5,
                 upgrade_cost: 200,
                 x: 19,
@@ -115,6 +144,7 @@ var types = {
                 level: 2,
                 cost: 200,
                 attack: 25,
+                range: 5,
                 attack_speed: 5,
                 upgrade_cost: 300,
                 x: 20,
@@ -127,6 +157,7 @@ var types = {
                 level: 3,
                 cost: 300,
                 attack: 35,
+                range: 5,
                 attack_speed: 5,
                 upgrade_cost: 400,
                 x: 21,
@@ -139,6 +170,7 @@ var types = {
                 level: 4,
                 cost: 400,
                 attack: 45,
+                range: 5,
                 attack_speed: 5,
                 upgrade_cost: 0,
                 x: 22,

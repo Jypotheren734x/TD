@@ -29,8 +29,23 @@ class Sprite {
     }
 
     draw() {
-        ctx.drawImage(this.image, this.x, this.y, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
+}
+class Button{
+    constructor(src,x,y){
+        this.image = new Image();
+        this.image.src = src;
+        this.x = x;
+        this.y = y;
+    }
+    clicked() {
+        return ((mouse.x > this.x) && (mouse.x < (this.x + 100))) && ((mouse.y > this.y) && (mouse.y < (this.y + 100)));
+    }
+    draw(){
+        ctx.drawImage(this.image,this.x, this.y, 100, 100);
+    }
+
 }
 class Tower extends Sprite {
     constructor(type, x, y) {
@@ -54,31 +69,50 @@ class Tower extends Sprite {
         this.my = type.my * 64;
         this.ax = type.ax * 64;
         this.ay = type.ay * 64;
+        this.range = type.range * 64;
     }
-
+    inRange(target){
+        let dx = target.x - this.x;
+        let dy = target.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        return distance < this.range;
+    }
     target(target) {
-        let center = [this.x + this.swidth / 2, this.y + this.sheight / 2];
-        let offsetY = target.x - center[0];
-        let offsetX = target.y - center[1];
-        let degrees = Math.atan2(offsetY, -offsetX) * (180 / Math.PI);
-        ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
-        this.rotate(degrees);
-        if (target.health > 0) {
-            this.current++;
-            if (this.current % this.attack_speed === 0) {
-                target.health -= this.attack;
+        for(let i = 0; i<target.length; i++){
+            let center = [this.x + this.swidth / 2, this.y + this.sheight / 2];
+            let offsetY = target[i].x - center[0];
+            let offsetX = target[i].y - center[1];
+            let degrees = Math.atan2(offsetY, -offsetX) * (180 / Math.PI);
+            ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+            if(!target[i].isDead) {
+                if (this.inRange(target[i])) {
+                    this.rotate(degrees);
+                    if (target[i].health > 0) {
+                        this.current++;
+                        if (this.current % this.attack_speed === 0) {
+                            target[i].health -= this.attack;
+                        }
+                    }
+                    return true;
+                }
             }
         }
+        this.draw();
     }
 
     drawInfo() {
-        ctx.fillText(this.type, this.x + 64, this.y + 20);
-        ctx.fillText("Level: " + this.level, this.x + 64, this.y + 30);
-        ctx.fillText("Atk: " + this.attack, this.x + 64, this.y + 40);
+        ctx.fillText(this.type, this.x + 64, this.y + 10);
+        ctx.fillText("Level: " + this.level, this.x + 64, this.y + 20);
+        ctx.fillText("Atk: " + this.attack, this.x + 64, this.y + 30);
+        ctx.fillText("Atk Spd: " + this.attack_speed, this.x + 64, this.y + 40);
         ctx.fillText("Cost: " + this.cost, this.x + 64, this.y + 50);
+        ctx.fillText("Range: " + this.range/64, this.x + 64, this.y + 60);
     }
 
     upgrade() {
+        this.background = new Image();
+        this.background.src = 'img/uipack_fixed/PNG/yellow_panel.png';
+        ctx.drawImage(this.background, this.next.x, this.next.y, 120, 64);
         this.next.draw();
         this.next.drawInfo();
     }
@@ -87,8 +121,63 @@ class Tower extends Sprite {
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
+    idleDraw(){
+        this.draw();
+        ctx.beginPath();
+        ctx.arc(this.x + this.swidth / 2, this.y + this.sheight / 2,this.range,0,2*Math.PI);
+        ctx.stroke();
+    }
 }
-
+class Digit extends Sprite{
+    constructor(type, x, y) {
+        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+    }
+}
+class Symbol extends Sprite{
+    constructor(type, x, y) {
+        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+    }
+}
+class Number{
+    constructor(x,y,digits){
+        this.x = x;
+        this.y = y;
+        this.digits = [];
+        for(let i = 0, cx = this.x; i<digits.length; i++, cx+=.5){
+            this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
+        }
+    }
+    update(digits){
+        this.digits = [];
+        for(let i = 0, cx = this.x; i<digits.length; i++, cx+=.5){
+            this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
+        }
+        this.draw();
+    }
+    draw(){
+        for(let i = 0; i<this.digits.length; i++){
+            this.digits[i].draw();
+        }
+    }
+}
+class Money extends Number{
+    constructor(x,y,digits){
+        super(x,y,digits);
+    }
+    update(digits){
+        this.digits = [];
+        this.digits.push(new Symbol(types.symbols.$, this.x,this.y));
+        for(let i = 0, cx = this.x+.5; i<digits.length; i++, cx+=.5){
+            this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
+        }
+        this.draw();
+    }
+    draw(){
+        for(let i = 0; i<this.digits.length; i++){
+            this.digits[i].draw();
+        }
+    }
+}
 class Tower_Slot extends Sprite {
     constructor(type, x, y) {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
@@ -103,39 +192,30 @@ class Tower_Slot extends Sprite {
     }
 
     drawTowers() {
-        ctx.rect(this.towers[0].x + 64, this.towers[0], this.towers[0].width, this.towers[0].height + this.towers[1].height);
+        this.background = new Image();
+        this.background.src = 'img/uipack_fixed/PNG/yellow_panel.png';
+        ctx.drawImage(this.background, this.towers[0].x, this.towers[0].y, 120, 64);
+        ctx.drawImage(this.background, this.towers[1].x, this.towers[1].y, 120, 64);
         this.towers[0].draw();
         this.towers[0].drawInfo();
         this.towers[1].draw();
         this.towers[1].drawInfo();
-    }
-
-    draw() {
-        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
 }
 class Wall extends Sprite {
     constructor(type, x, y) {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
     }
-
-    draw() {
-        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
-    }
 }
 class Path extends Sprite {
     constructor(type, x, y) {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
     }
-
-    draw() {
-        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
-    }
 }
 class Mob extends Sprite {
     constructor(type, x, y, path) {
         super(x * 32, y * 32, 64, 64, type.x * 64, type.y * 64, 64, 64);
-        this.health = type.level * 10000;
+        this.health = type.level * 1200;
         this.isDead = false;
         this.speed = type.speed;
         this.current_node = path[0];

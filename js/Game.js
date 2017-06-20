@@ -14,8 +14,17 @@ class Game {
         this.current_wave = -1;
         this.money = 300;
         this.idle = true;
-        this.lives = 100;
+        this.lives = 150;
         this.kills = 0;
+        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width-100, 0);
+        this.life_count = new Number(this.map.maze.background[0].length, 0, digits(this.lives));
+        this.wave_count = new Number(this.map.maze.background[0].length, 1, digits(0));
+        this.kill_count = new Number(this.map.maze.background[0].length, 2, digits(this.kills));
+        this.money_count = new Money(this.map.maze.background[0].length, 3, digits(this.money));
+        ctx.font = "15px kenpixel";
+        canvas.onclick = function (e) {
+            mouse = mousePosition(e);
+        };
         for (let i = 0, y = 0; i < this.map.maze.background.length; i++, y++) {
             for (let j = 0, x = 0; j < this.map.maze.background[i].length; j++, x++) {
                 switch (this.map.maze.background[i][j]) {
@@ -25,30 +34,51 @@ class Game {
                 }
             }
         }
-        this.waves.push(new Wave(5, types.mobs.soldier, this.map.maze.path));
-        this.waves.push(new Wave(10, types.mobs.soldier, this.map.maze.path));
         this.waves.push(new Wave(15, types.mobs.soldier, this.map.maze.path));
-        this.waves.push(new Wave(15, types.mobs.robot, this.map.maze.path));
+        this.waves.push(new Wave(25, types.mobs.soldier, this.map.maze.path));
+        this.waves.push(new Wave(30, types.mobs.soldier, this.map.maze.path));
         this.waves.push(new Wave(20, types.mobs.robot, this.map.maze.path));
-        this.waves.push(new Wave(20, types.mobs.super_soldier, this.map.maze.path));
-        this.waves.push(new Wave(15, types.mobs.cyborg, this.map.maze.path));
-        $('#start').click(function () {
-            self.idle = false;
-            if (self.current_wave + 1 < self.waves.length) {
-                self.current_wave++;
-            } else {
-                alert("YOU WIN!");
-            }
-        });
+        this.waves.push(new Wave(30, types.mobs.robot, this.map.maze.path));
+        this.waves.push(new Wave(30, types.mobs.super_soldier, this.map.maze.path));
+        this.waves.push(new Wave(25, types.mobs.cyborg, this.map.maze.path));
     }
 
     update() {
         let self = this;
         canvas.width = canvas.width;
         this.map.build();
-        ctx.fillText("TOWERS Lives: " + this.lives, 0, 10);
-        ctx.fillText("Wave: " + (this.current_wave + 1) + " Kills: " + this.kills, 0, 20);
-        ctx.fillText("Money: " + this.money, 0, 30);
+        this.startbtn.draw();
+        if(this.startbtn.clicked()){
+            this.idle = false;
+            if (this.current_wave + 1 < this.waves.length) {
+                this.current_wave++;
+            }
+            mouse = {};
+        }
+        if(this.lives > 0) {
+            this.life_count.update(digits(this.lives));
+        }else{
+            this.life_count.update([0]);
+        }
+        if((this.current_wave+1) > 0) {
+            this.wave_count.update(digits(this.current_wave+1));
+        }else{
+            this.wave_count.update([0]);
+        }
+        if(this.kills > 0) {
+            this.kill_count.update(digits(this.kills));
+        }else{
+            this.kill_count.update([0]);
+        }
+        if(this.money > 0) {
+            this.money_count.update(digits(this.money));
+        }else{
+            this.money_count.update([0]);
+        }
+        ctx.fillText("Lives: ", this.map.maze.background[0].length*64, 10);
+        ctx.fillText("Wave: " , this.map.maze.background[0].length*64, 74);
+        ctx.fillText("Kills: " , this.map.maze.background[0].length*64, 138);
+        ctx.fillText("Money: ", this.map.maze.background[0].length*64, 202);
     }
     run() {
         let self = this;
@@ -58,10 +88,11 @@ class Game {
                 this.lives -= this.waves[this.current_wave].lives_lost;
                 this.kills += this.waves[this.current_wave].mobs_dead;
                 this.money = this.kills * 100;
+                this.tower_slots.active_slot = null;
             } else {
-                self.waves[self.current_wave].attack(self.ctx);
+                self.waves[self.current_wave].attack();
                 this.towers.forEach(function (tower) {
-                    tower.target(self.waves[self.current_wave].getLeadMob());
+                    tower.target(self.waves[self.current_wave].mobs);
                 });
             }
         } else {
@@ -69,59 +100,69 @@ class Game {
                 this.tower_slots.slots[i].draw();
             }
             this.towers.forEach(function (tower) {
-                tower.draw();
+                tower.idleDraw();
             });
             if (this.tower_slots.active_slot !== null) {
                 if (this.tower_slots.active_slot instanceof Tower_Slot) {
-                    if (this.tower_slots.active_slot.towers[0].clicked()) {
-                        let t = this.tower_slots.active_slot.towers[0];
-                        if (this.money - t.cost >= 0) {
-                            t.x -= 64;
-                            this.money -= t.cost;
-                            this.towers.push(t);
-                            this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                            this.tower_slots.active_slot = null;
+                    if(!this.tower_slots.active_slot.clicked() && !this.tower_slots.active_slot.towers[0].clicked() && !this.tower_slots.active_slot.towers[1].clicked()){
+                        this.tower_slots.active_slot = null;
+                    }else {
+                        if (this.tower_slots.active_slot.towers[0].clicked()) {
+                            let t = this.tower_slots.active_slot.towers[0];
+                            if (this.money - t.cost >= 0) {
+                                t.x = this.tower_slots.active_slot.x;
+                                t.y = this.tower_slots.active_slot.y;
+                                this.money -= t.cost;
+                                this.towers.push(t);
+                                this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
+                                this.tower_slots.active_slot = null;
+                            }
+                        } else if (this.tower_slots.active_slot.towers[1].clicked()) {
+                            let t = this.tower_slots.active_slot.towers[1];
+                            if (this.money - t.cost >= 0) {
+                                t.x = this.tower_slots.active_slot.x;
+                                t.y = this.tower_slots.active_slot.y;
+                                this.money -= t.cost;
+                                this.towers.push(t);
+                                this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
+                                this.tower_slots.active_slot = null;
+                            }
+                        } else {
+                            this.tower_slots.active_slot.drawTowers();
                         }
-                    } else if (this.tower_slots.active_slot.towers[1].clicked()) {
-                        let t = this.tower_slots.active_slot.towers[1];
-                        if (this.money - t.cost >= 0) {
-                            t.x -= 64;
-                            t.y -= 64;
-                            this.money -= t.cost;
-                            this.towers.push(t);
-                            this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                            this.tower_slots.active_slot = null;
-                        }
-                    } else {
-                        this.tower_slots.active_slot.drawTowers();
                     }
                 }
                 if (this.tower_slots.active_slot instanceof Tower) {
-                    if (this.tower_slots.active_slot.next.clicked()) {
-                        let t = this.tower_slots.active_slot.next;
-                        if (this.money - this.tower_slots.active_slot.upgrade_cost >= 0) {
-                            t.x -= 64;
-                            this.money -= this.tower_slots.active_slot.upgrade_cost;
-                            this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
-                            this.towers.push(t);
-                            this.tower_slots.active_slot = null;
+                    if(!this.tower_slots.active_slot.clicked() && !this.tower_slots.active_slot.next.clicked()){
+                        this.tower_slots.active_slot = null;
+                    }else {
+                        if (this.tower_slots.active_slot.next.clicked()) {
+                            let t = this.tower_slots.active_slot.next;
+                            if (this.money - this.tower_slots.active_slot.upgrade_cost >= 0) {
+                                t.x -= 64;
+                                this.money -= this.tower_slots.active_slot.upgrade_cost;
+                                this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
+                                this.towers.push(t);
+                                this.tower_slots.active_slot = null;
+                            }
+                        } else {
+                            this.tower_slots.active_slot.upgrade();
                         }
-                    } else {
-                        this.tower_slots.active_slot.upgrade();
                     }
                 }
-            }
-            for (let i = 0; i < this.tower_slots.slots.length; i++) {
-                if (this.tower_slots.slots[i].clicked()) {
-                    this.tower_slots.active_slot = this.tower_slots.slots[i];
+            }else {
+                for (let i = 0; i < this.tower_slots.slots.length; i++) {
+                    if (this.tower_slots.slots[i].clicked()) {
+                        this.tower_slots.active_slot = this.tower_slots.slots[i];
+                    }
                 }
-            }
-            for (let i = 0; i < this.towers.length; i++) {
-                if (this.towers[i].clicked() && this.towers[i].type === 'cannon' && this.towers[i].level === 1) {
-                    this.tower_slots.active_slot = this.towers[i];
-                }
-                if (this.towers[i].clicked() && this.towers[i].type === 'missile' && this.towers[i].level < 4) {
-                    this.tower_slots.active_slot = this.towers[i];
+                for (let i = 0; i < this.towers.length; i++) {
+                    if (this.towers[i].clicked() && this.towers[i].type === 'cannon' && this.towers[i].level === 1) {
+                        this.tower_slots.active_slot = this.towers[i];
+                    }
+                    if (this.towers[i].clicked() && this.towers[i].type === 'missile' && this.towers[i].level < 4) {
+                        this.tower_slots.active_slot = this.towers[i];
+                    }
                 }
             }
         }
