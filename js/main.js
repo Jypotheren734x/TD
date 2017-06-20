@@ -3,10 +3,12 @@
  */
 $(document).ready(function () {
     let game = new Game();
+
     function mainLoop() {
         game.update();
         game.run();
         requestAnimationFrame(mainLoop);
     }
+
     requestAnimationFrame(mainLoop);
 });

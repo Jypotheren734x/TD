@@ -12,14 +12,14 @@ class Game {
             active_slot: null
         };
         this.current_wave = -1;
-        this.money = 200;
+        this.money = 300;
         this.idle = true;
         this.lives = 100;
         this.kills = 0;
-        for (let i = 0, y = 0; i < this.map.maze.tower_locations.length; i++, y++) {
-            for (let j = 0, x = 0; j < this.map.maze.tower_locations[i].length; j++, x++) {
-                switch (this.map.maze.tower_locations[i][j]) {
-                    case 'T':
+        for (let i = 0, y = 0; i < this.map.maze.background.length; i++, y++) {
+            for (let j = 0, x = 0; j < this.map.maze.background[i].length; j++, x++) {
+                switch (this.map.maze.background[i][j]) {
+                    case 'S':
                         this.tower_slots.slots.push(new Tower_Slot(types.ux.empty, x, y));
                         break;
                 }
@@ -28,21 +28,21 @@ class Game {
         this.waves.push(new Wave(5, types.mobs.soldier, this.map.maze.path));
         this.waves.push(new Wave(10, types.mobs.soldier, this.map.maze.path));
         this.waves.push(new Wave(15, types.mobs.soldier, this.map.maze.path));
-        this.waves.push(new Wave(5, types.mobs.robot, this.map.maze.path));
-        this.waves.push(new Wave(10, types.mobs.robot, this.map.maze.path));
-        this.waves.push(new Wave(10, types.mobs.super_soldier, this.map.maze.path));
-        this.waves.push(new Wave(5, types.mobs.cyborg, this.map.maze.path));
-        console.log(this.waves);
+        this.waves.push(new Wave(15, types.mobs.robot, this.map.maze.path));
+        this.waves.push(new Wave(20, types.mobs.robot, this.map.maze.path));
+        this.waves.push(new Wave(20, types.mobs.super_soldier, this.map.maze.path));
+        this.waves.push(new Wave(15, types.mobs.cyborg, this.map.maze.path));
         $('#start').click(function () {
-             self.idle = false;
-             if(self.current_wave +1 < self.waves.length) {
-                 self.current_wave++;
-             }else{
-                 alert("YOU WIN!");
-             }
+            self.idle = false;
+            if (self.current_wave + 1 < self.waves.length) {
+                self.current_wave++;
+            } else {
+                alert("YOU WIN!");
+            }
         });
     }
-    update(){
+
+    update() {
         let self = this;
         canvas.width = canvas.width;
         this.map.build();
@@ -58,7 +58,7 @@ class Game {
                 this.lives -= this.waves[this.current_wave].lives_lost;
                 this.kills += this.waves[this.current_wave].mobs_dead;
                 this.money = this.kills * 100;
-            }else {
+            } else {
                 self.waves[self.current_wave].attack(self.ctx);
                 this.towers.forEach(function (tower) {
                     tower.target(self.waves[self.current_wave].getLeadMob());
@@ -72,27 +72,43 @@ class Game {
                 tower.draw();
             });
             if (this.tower_slots.active_slot !== null) {
-                if (this.tower_slots.active_slot.towers[0].clicked()) {
-                    let t = this.tower_slots.active_slot.towers[0];
-                    if (this.money - t.cost >= 0) {
-                        t.x -= 64;
-                        this.money -= t.cost;
-                        this.towers.push(t);
-                        this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                        this.tower_slots.active_slot = null;
+                if (this.tower_slots.active_slot instanceof Tower_Slot) {
+                    if (this.tower_slots.active_slot.towers[0].clicked()) {
+                        let t = this.tower_slots.active_slot.towers[0];
+                        if (this.money - t.cost >= 0) {
+                            t.x -= 64;
+                            this.money -= t.cost;
+                            this.towers.push(t);
+                            this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
+                            this.tower_slots.active_slot = null;
+                        }
+                    } else if (this.tower_slots.active_slot.towers[1].clicked()) {
+                        let t = this.tower_slots.active_slot.towers[1];
+                        if (this.money - t.cost >= 0) {
+                            t.x -= 64;
+                            t.y -= 64;
+                            this.money -= t.cost;
+                            this.towers.push(t);
+                            this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
+                            this.tower_slots.active_slot = null;
+                        }
+                    } else {
+                        this.tower_slots.active_slot.drawTowers();
                     }
-                } else if (this.tower_slots.active_slot.towers[1].clicked()) {
-                    let t = this.tower_slots.active_slot.towers[1];
-                    if (this.money - t.cost >= 0) {
-                        t.x -= 64;
-                        t.y -= 64;
-                        this.money -= t.cost;
-                        this.towers.push(t);
-                        this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                        this.tower_slots.active_slot = null;
+                }
+                if (this.tower_slots.active_slot instanceof Tower) {
+                    if (this.tower_slots.active_slot.next.clicked()) {
+                        let t = this.tower_slots.active_slot.next;
+                        if (this.money - this.tower_slots.active_slot.upgrade_cost >= 0) {
+                            t.x -= 64;
+                            this.money -= this.tower_slots.active_slot.upgrade_cost;
+                            this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
+                            this.towers.push(t);
+                            this.tower_slots.active_slot = null;
+                        }
+                    } else {
+                        this.tower_slots.active_slot.upgrade();
                     }
-                } else {
-                    this.tower_slots.active_slot.drawTowers();
                 }
             }
             for (let i = 0; i < this.tower_slots.slots.length; i++) {
@@ -100,50 +116,60 @@ class Game {
                     this.tower_slots.active_slot = this.tower_slots.slots[i];
                 }
             }
+            for (let i = 0; i < this.towers.length; i++) {
+                if (this.towers[i].clicked() && this.towers[i].type === 'cannon' && this.towers[i].level === 1) {
+                    this.tower_slots.active_slot = this.towers[i];
+                }
+                if (this.towers[i].clicked() && this.towers[i].type === 'missile' && this.towers[i].level < 4) {
+                    this.tower_slots.active_slot = this.towers[i];
+                }
+            }
         }
     }
 }
-class Wave{
-    constructor(size, type, path){
+class Wave {
+    constructor(size, type, path) {
         this.mobs = [];
         this.mobs_dead = 0;
         this.lead_mob = 0;
         this.lives_lost = 0;
         this.complete = false;
         for (let i = 0; i < size; i++) {
-            if(i%3 === 0){
-                this.mobs.push(new Mob(type, 3, 15 + i, path));
-            }else{
-                this.mobs.push(new Mob(type, 3, 15 + i, path));
+            if (i % 3 === 0) {
+                this.mobs.push(new Mob(type, 3, 29 + i, path));
+            } else {
+                this.mobs.push(new Mob(type, 3, 29 + i, path));
             }
         }
     }
-    getLeadMob(){
+
+    getLeadMob() {
         return this.mobs[this.lead_mob];
     }
-    attack(){
+
+    attack() {
         let self = this;
-        if(this.mobs_dead+this.lives_lost === this.mobs.length){
+        if (this.mobs_dead + this.lives_lost === this.mobs.length) {
             this.complete = true;
             console.log("Wave Cleared");
         }
         this.lead_mob = 0;
         this.lives_lost = 0;
         this.mobs.forEach(function (mob) {
-                if (mob.health > 0) {
-                    mob.draw();
-                    if (mob.atEnd) {
-                        self.lives_lost++;
-                    }
-                }else{
-                    if(!mob.isDead) {
-                        mob.isDead = true;
-                        self.mobs_dead++;
-                    }
-                    if(self.lead_mob+1 < self.mobs.length) {
-                        self.lead_mob++;
-                    }
+            if (mob.health > 0) {
+                mob.draw();
+                if (mob.atEnd) {
+                    self.lives_lost++;
                 }
+            } else {
+                if (!mob.isDead) {
+                    mob.isDead = true;
+                    self.mobs_dead++;
+                }
+                if (self.lead_mob + 1 < self.mobs.length) {
+                    self.lead_mob++;
+                }
+            }
         });
     }
 }

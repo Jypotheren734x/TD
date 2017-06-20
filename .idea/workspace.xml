@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b06a9e2c-ef06-4944-a626-9c30b6f7b31f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.scss" afterPath="$PROJECT_DIR$/css/main.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Game.js" afterPath="$PROJECT_DIR$/js/Game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Map.js" afterPath="$PROJECT_DIR$/js/Map.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Sprites.js" afterPath="$PROJECT_DIR$/js/Sprites.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/helpers.js" afterPath="$PROJECT_DIR$/js/helpers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,21 +53,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sprites.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/Sprites.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-              <folding />
-            </state>
+      <file leaf-file-name="Gird.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img/Gird.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+            <state relative-caret-position="572">
+              <caret line="45" column="238" lean-forward="false" selection-start-line="45" selection-start-column="238" selection-end-line="45" selection-end-column="238" />
               <folding />
             </state>
           </provider>
@@ -72,18 +73,28 @@
       <file leaf-file-name="helpers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/helpers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="72" column="86" lean-forward="true" selection-start-line="72" selection-start-column="86" selection-end-line="72" selection-end-column="86" />
+            <state relative-caret-position="442">
+              <caret line="83" column="23" lean-forward="true" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Sprites.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/Sprites.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="65" column="27" lean-forward="true" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="59" column="46" lean-forward="false" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+            <state relative-caret-position="272">
+              <caret line="100" column="66" lean-forward="false" selection-start-line="100" selection-start-column="66" selection-end-line="100" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -106,12 +117,22 @@
       <find>600</find>
       <find>this.types</find>
       <find>ctx</find>
+      <find>'S'</find>
+      <find>'cru'</find>
+      <find>this.values.solid.value</find>
+      <find>urc</find>
     </findStrings>
     <replaceStrings>
       <replace>1216</replace>
       <replace>643</replace>
       <replace>types</replace>
       <replace>ctx</replace>
+      <replace>types.</replace>
+      <replace>this.valuse.solid.value</replace>
+      <replace>this.values.corner_right_up.value</replace>
+      <replace>this.values.curve_right_up.value</replace>
+      <replace>this.values.solid</replace>
+      <replace>cru</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -134,9 +155,9 @@
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/Map.js" />
+        <option value="$PROJECT_DIR$/js/Game.js" />
         <option value="$PROJECT_DIR$/js/helpers.js" />
         <option value="$PROJECT_DIR$/js/Sprites.js" />
-        <option value="$PROJECT_DIR$/js/Game.js" />
       </list>
     </option>
   </component>
@@ -258,11 +279,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="Node.js.Map.js">
     <configuration default="false" name="Game.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="Game.js" working-dir="$PROJECT_DIR$/js">
       <method />
     </configuration>
     <configuration default="false" name="index.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TD/index.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="Map.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="Map.js" working-dir="$PROJECT_DIR$/js">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -334,15 +358,17 @@
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/Tower Defense/index.html">
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       <item index="1" class="java.lang.String" itemvalue="Node.js.Game.js" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.Map.js" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.Game.js" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.Map.js" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.Game.js" />
       </list>
     </recent_temporary>
   </component>
@@ -364,7 +390,7 @@
       <workItem from="1497752653730" duration="6525000" />
       <workItem from="1497801369304" duration="9896000" />
       <workItem from="1497813642062" duration="28467000" />
-      <workItem from="1497886661212" duration="12615000" />
+      <workItem from="1497886661212" duration="27105000" />
     </task>
     <task id="LOCAL-00001" summary="Working mazing">
       <created>1497647633418</created>
@@ -387,11 +413,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497899756492</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="WORKING!!!!!!!!!!!!!!!!!!!!!">
+      <created>1497900459621</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1497900459621</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92132000" />
+    <option name="totallyTimeSpent" value="106622000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -408,18 +441,18 @@
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15208334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971373" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872656" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39980257" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39892474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971373" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -433,13 +466,21 @@
     <MESSAGE value="Working mazing" />
     <MESSAGE value="Updated functionality. Tower selector is displayed. Cannot select tower though" />
     <MESSAGE value="Updated functionality. Game is working, can select and place towers in proper position. Economy is next" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated functionality. Game is working, can select and place towers in proper position. Economy is next" />
+    <MESSAGE value="WORKING!!!!!!!!!!!!!!!!!!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="WORKING!!!!!!!!!!!!!!!!!!!!!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JavascriptDebugType">
+        <watch expression="this.money - this.tower_slots.active_slot.upgrade_cost" language="JavaScript" />
+        <watch expression="this.tower_slots.active_slot" language="JavaScript" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/main.js">
@@ -463,6 +504,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -488,6 +530,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -544,6 +587,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -553,11 +597,6 @@
           <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img/Tilesheet/towerDefense_tilesheet.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Pathing.js">
@@ -578,11 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img/Gird.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -591,34 +625,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/img/Tilesheet/towerDefense_tilesheet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="45" column="238" lean-forward="false" selection-start-line="45" selection-start-column="238" selection-end-line="45" selection-end-column="238" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/Gird.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="100" column="66" lean-forward="false" selection-start-line="100" selection-start-column="66" selection-end-line="100" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/helpers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="72" column="86" lean-forward="true" selection-start-line="72" selection-start-column="86" selection-end-line="72" selection-end-column="86" />
+        <state relative-caret-position="442">
+          <caret line="83" column="23" lean-forward="true" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Sprites.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="59" column="46" lean-forward="false" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+        <state relative-caret-position="364">
+          <caret line="65" column="27" lean-forward="true" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
           <folding />
         </state>
       </provider>

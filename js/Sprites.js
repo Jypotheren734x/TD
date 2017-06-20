@@ -15,9 +15,11 @@ class Sprite {
         this.swidth = swidth;
         this.sheight = sheight;
     }
-    clicked(){
+
+    clicked() {
         return ((mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
     }
+
     rotate(angle) {
         ctx.save();
         ctx.translate(this.x + this.swidth / 2, this.y + this.sheight / 2);
@@ -25,29 +27,62 @@ class Sprite {
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, -this.swidth / 2, -this.sheight / 2, this.swidth, this.sheight);
         ctx.restore();
     }
+
+    draw() {
+        ctx.drawImage(this.image, this.x, this.y, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+    }
 }
 class Tower extends Sprite {
     constructor(type, x, y) {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
         this.type = type.type;
         this.level = type.level;
-        this.attack = this.level * 10;
+        this.attack = type.attack;
+        this.attack_speed = type.attack_speed;
+        this.current = 0;
         this.cost = type.cost;
+        this.upgrade_cost = type.upgrade_cost;
+        if (this.level + 1 < 3 && this.type === 'cannon') {
+            this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
+        } else if (this.level + 1 < 5 && this.type === 'missile') {
+            this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
+            this.next.y -= 64;
+        } else {
+            this.next = null;
+        }
         this.mx = type.mx * 64;
         this.my = type.my * 64;
+        this.ax = type.ax * 64;
+        this.ay = type.ay * 64;
     }
 
     target(target) {
-        let center=[this.x + this.swidth / 2, this.y + this.sheight / 2];
+        let center = [this.x + this.swidth / 2, this.y + this.sheight / 2];
         let offsetY = target.x - center[0];
         let offsetX = target.y - center[1];
-        let degrees = Math.atan2(offsetY,-offsetX) * (180/Math.PI);
+        let degrees = Math.atan2(offsetY, -offsetX) * (180 / Math.PI);
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
         this.rotate(degrees);
-        if(target.health > 0) {
-            target.health-=this.attack;
+        if (target.health > 0) {
+            this.current++;
+            if (this.current % this.attack_speed === 0) {
+                target.health -= this.attack;
+            }
         }
     }
+
+    drawInfo() {
+        ctx.fillText(this.type, this.x + 64, this.y + 20);
+        ctx.fillText("Level: " + this.level, this.x + 64, this.y + 30);
+        ctx.fillText("Atk: " + this.attack, this.x + 64, this.y + 40);
+        ctx.fillText("Cost: " + this.cost, this.x + 64, this.y + 50);
+    }
+
+    upgrade() {
+        this.next.draw();
+        this.next.drawInfo();
+    }
+
     draw() {
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
@@ -70,15 +105,9 @@ class Tower_Slot extends Sprite {
     drawTowers() {
         ctx.rect(this.towers[0].x + 64, this.towers[0], this.towers[0].width, this.towers[0].height + this.towers[1].height);
         this.towers[0].draw();
-        ctx.fillText(this.towers[0].type, this.towers[0].x + 64, this.towers[0].y + 20);
-        ctx.fillText("Level: " + this.towers[0].level, this.towers[0].x + 64, this.towers[0].y + 30);
-        ctx.fillText("Atk: " + this.towers[0].attack, this.towers[0].x + 64, this.towers[0].y + 40);
-        ctx.fillText("Cost: " + this.towers[0].cost, this.towers[0].x + 64, this.towers[0].y + 50);
+        this.towers[0].drawInfo();
         this.towers[1].draw();
-        ctx.fillText(this.towers[1].type, this.towers[1].x + 64, this.towers[1].y + 20);
-        ctx.fillText("Level: " + this.towers[1].level, this.towers[1].x + 64, this.towers[1].y + 30);
-        ctx.fillText("Atk: " + this.towers[1].attack, this.towers[1].x + 64, this.towers[1].y + 40);
-        ctx.fillText("Cost: " + this.towers[1].cost, this.towers[1].x + 64, this.towers[1].y + 50);
+        this.towers[1].drawInfo();
     }
 
     draw() {
@@ -106,7 +135,7 @@ class Path extends Sprite {
 class Mob extends Sprite {
     constructor(type, x, y, path) {
         super(x * 32, y * 32, 64, 64, type.x * 64, type.y * 64, 64, 64);
-        this.health = type.level * 50000;
+        this.health = type.level * 10000;
         this.isDead = false;
         this.speed = type.speed;
         this.current_node = path[0];
@@ -116,9 +145,9 @@ class Mob extends Sprite {
     }
 
     up() {
-        if(this.y-this.speed > this.targetY) {
+        if (this.y - this.speed > this.targetY) {
             this.y -= this.speed;
-        }else{
+        } else {
             this.y = this.targetY;
         }
         this.rotate(270)
@@ -126,9 +155,9 @@ class Mob extends Sprite {
 
     down() {
 
-        if(this.y+this.speed < this.targetY) {
+        if (this.y + this.speed < this.targetY) {
             this.y += this.speed;
-        }else{
+        } else {
             this.y = this.targetY;
         }
         this.rotate(90);
@@ -136,9 +165,9 @@ class Mob extends Sprite {
 
     left() {
 
-        if(this.x-this.speed > this.targetX) {
+        if (this.x - this.speed > this.targetX) {
             this.x -= this.speed;
-        }else{
+        } else {
             this.x = this.targetX;
         }
         this.rotate(180);
@@ -146,9 +175,9 @@ class Mob extends Sprite {
 
     right() {
 
-        if(this.x+this.speed < this.targetX) {
+        if (this.x + this.speed < this.targetX) {
             this.x += this.speed;
-        }else{
+        } else {
             this.x = this.targetX;
         }
         this.rotate(0);
@@ -171,13 +200,13 @@ class Mob extends Sprite {
                     this.up();
                 }
             }
-        }else{
+        } else {
             this.atEnd = true;
         }
     }
 
     draw() {
-        if(!this.atEnd) {
+        if (!this.atEnd) {
             this.move();
             // ctx.fillText("Health: " + this.health, this.x, this.y + 20);
         }
