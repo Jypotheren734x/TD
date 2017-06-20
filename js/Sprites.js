@@ -230,12 +230,15 @@ class Mob extends Sprite {
     constructor(type, x, y, path) {
         super(x * 32, y * 32, 64, 64, type.x * 64, type.y * 64, 64, 64);
         this.health = type.level * 1200;
+        this.level = type.level;
         this.isDead = false;
         this.speed = type.speed;
         this.current_node = path[0];
         this.targetX = this.current_node.x * 32;
         this.targetY = this.current_node.y * 32;
         this.atEnd = false;
+        this.health_bar = new Image();
+        this.health_bar.src = "img/uipack_fixed/PNG/green_button00.png";
     }
 
     up() {
@@ -286,12 +289,16 @@ class Mob extends Sprite {
             } else {
                 if (this.x < this.targetX) {
                     this.right();
+                    ctx.drawImage(this.health_bar, this.x + (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
                 } else if (this.x > this.targetX) {
                     this.left();
+                    ctx.drawImage(this.health_bar, this.x + (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
                 } else if (this.y < this.targetY) {
                     this.down();
+                    ctx.drawImage(this.health_bar, this.x + (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
                 } else if (this.y > this.targetY) {
                     this.up();
+                    ctx.drawImage(this.health_bar, this.x - (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
                 }
             }
         } else {
@@ -302,7 +309,6 @@ class Mob extends Sprite {
     draw() {
         if (!this.atEnd && !this.isDead) {
             this.move();
-            // ctx.fillText("Health: " + this.health, this.x, this.y + 20);
         }
         // ctx.fillText("X: "+this.x + " Y: " +this.y ,this.x, this.y);
         // ctx.fillText("CX: " + this.targetX + " CY: "+ this.targetY ,this.x, this.y + 10);

@@ -41,6 +41,7 @@ class Game {
         this.waves.push(new Wave(30, types.mobs.robot, this.map.maze.path));
         this.waves.push(new Wave(30, types.mobs.super_soldier, this.map.maze.path));
         this.waves.push(new Wave(25, types.mobs.cyborg, this.map.maze.path));
+        this.waves.push(new Wave(35, types.mobs.cyborg, this.map.maze.path));
     }
 
     update() {
@@ -145,8 +146,7 @@ class Game {
                                 this.towers.push(t);
                                 this.tower_slots.active_slot = null;
                             }
-                        } else if (this.tower_slots.active_slot.cancel.clicked()) {
-                            console.log('Sold');
+                        } else if (this.tower_slots.active_slot.next.cancel.clicked()) {
                             this.money += this.tower_slots.active_slot.cost;
                             this.tower_slots.slots.push(new Tower_Slot(types.ux.empty, this.tower_slots.active_slot.x, this.tower_slots.active_slot.y));
                             this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
