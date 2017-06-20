@@ -17,7 +17,7 @@ class Sprite {
     }
 
     clicked() {
-        return ((mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
+        return (mousePressed && (mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
     }
 
     rotate(angle) {
@@ -42,7 +42,7 @@ class Button{
         this.height = height;
     }
     clicked() {
-        return ((mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
+        return (mousePressed && (mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
     }
     draw(){
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -63,7 +63,6 @@ class Tower extends Sprite {
             this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
         } else if (this.level + 1 < 5 && this.type === 'missile') {
             this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
-            this.next.y -= 64;
         } else {
             this.next = null;
         }
@@ -130,10 +129,103 @@ class Tower extends Sprite {
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
     }
     idleDraw(){
-        this.draw();
         ctx.beginPath();
         ctx.arc(this.x + this.swidth / 2, this.y + this.sheight / 2,this.range,0,2*Math.PI);
-        ctx.stroke();
+        ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        ctx.fill();
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        this.draw();
+    }
+}
+class Tower_Place extends Tower {
+    constructor(type, x, y) {
+        super(type, x, y);
+        this.ox = x * 64;
+        this.oy = y * 64;
+        this.startX = 0;
+        this.startY = 0;
+        this.drag = false;
+        this.tower = undefined;
+    }
+
+    reset() {
+        this.x = this.ox;
+        this.y = this.oy;
+    }
+
+    placeTower(slot) {
+        this.tower = new Tower(types.towers[this.type]["level_" + this.level], slot.x / 64, slot.y / 64);
+    }
+
+    at_slot(slot) {
+        if (!this.drag) {
+            let dx = slot.x - this.x;
+            let dy = slot.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            return distance < 64;
+        }
+    }
+
+    update() {
+        if (this.clicked()) {
+            if (!this.drag) {
+                this.startX = mouse.x - this.x;
+                this.startY = mouse.y - this.y;
+            }
+            this.drag = true;
+        } else {
+            if (!dragging) {
+                this.drag = false;
+                this.drawInfo();
+            }
+        }
+        if (this.drag) {
+            this.x = mouse.x - this.startX;
+            this.y = mouse.y - this.startY;
+            this.idleDraw();
+        } else {
+            this.draw();
+        }
+    }
+}
+class UI {
+    constructor() {
+        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width - 100, canvas.height - 100, 100, 100);
+        this.life_count = new Number(24, 0, digits([0]));
+        this.wave_count = new Number(24, 1, digits([0]));
+        this.kill_count = new Number(24, 2, digits([0]));
+        this.money_count = new Money(24, 3, digits([0]));
+        this.cl1 = new Tower_Place(types.towers.cannon.level_1, 24, 4);
+        this.ml1 = new Tower_Place(types.towers.missile.level_1, 24, 5);
+    }
+
+    update(lives, wave, kills, money) {
+        if (lives > 0) {
+            this.life_count.update(digits(lives));
+        } else {
+            this.life_count.update([0]);
+        }
+        if ((wave + 1) > 0) {
+            this.wave_count.update(digits(wave + 1));
+        } else {
+            this.wave_count.update([0]);
+        }
+        if (kills > 0) {
+            this.kill_count.update(digits(kills));
+        } else {
+            this.kill_count.update([0]);
+        }
+        if (money > 0) {
+            this.money_count.update(digits(money));
+        } else {
+            this.money_count.update([0]);
+        }
+    }
+
+    draw() {
+        this.startbtn.draw();
+        this.cl1.update();
+        this.ml1.update();
     }
 }
 class Digit extends Sprite{
@@ -195,25 +287,8 @@ class Money extends Number{
 class Tower_Slot extends Sprite {
     constructor(type, x, y) {
         super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
-        this.rx = x;
-        this.ry = y;
         this.width = 64;
         this.height = 64;
-        this.towers = [
-            new Tower(types.towers.cannon.level_1, this.rx + 1, this.ry),
-            new Tower(types.towers.missile.level_1, this.rx + 1, this.ry + 1),
-        ];
-    }
-
-    drawTowers() {
-        this.background = new Image();
-        this.background.src = 'img/uipack_fixed/PNG/yellow_panel.png';
-        ctx.drawImage(this.background, this.towers[0].x, this.towers[0].y, 120, 64);
-        ctx.drawImage(this.background, this.towers[1].x, this.towers[1].y, 120, 64);
-        this.towers[0].draw();
-        this.towers[0].drawInfo();
-        this.towers[1].draw();
-        this.towers[1].drawInfo();
     }
 }
 class Wall extends Sprite {

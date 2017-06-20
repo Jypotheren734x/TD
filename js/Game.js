@@ -16,14 +16,17 @@ class Game {
         this.idle = true;
         this.lives = 150;
         this.kills = 0;
-        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width - 100, canvas.height - 100, 100, 100);
-        this.life_count = new Number(this.map.maze.background[0].length, 0, digits(this.lives));
-        this.wave_count = new Number(this.map.maze.background[0].length, 1, digits(0));
-        this.kill_count = new Number(this.map.maze.background[0].length, 2, digits(this.kills));
-        this.money_count = new Money(this.map.maze.background[0].length, 3, digits(this.money));
+        this.ui = new UI();
         ctx.font = "15px kenpixel";
-        canvas.onclick = function (e) {
+        canvas.onmousemove = function (e) {
             mouse = mousePosition(e);
+        };
+        canvas.onmousedown = function (e) {
+            mousePressed = true;
+        };
+        canvas.onmouseup = function (e) {
+            mousePressed = false;
+            dragging = false;
         };
         for (let i = 0, y = 0; i < this.map.maze.background.length; i++, y++) {
             for (let j = 0, x = 0; j < this.map.maze.background[i].length; j++, x++) {
@@ -48,38 +51,17 @@ class Game {
         let self = this;
         canvas.width = canvas.width;
         this.map.build();
-        if(this.startbtn.clicked()){
+        if (this.ui.startbtn.clicked()) {
             this.idle = false;
             if (this.current_wave + 1 < this.waves.length) {
                 this.current_wave++;
             }
             mouse = {};
         }
-        if(this.lives > 0) {
-            this.life_count.update(digits(this.lives));
-        }else{
-            this.life_count.update([0]);
-        }
-        if((this.current_wave+1) > 0) {
-            this.wave_count.update(digits(this.current_wave+1));
-        }else{
-            this.wave_count.update([0]);
-        }
-        if(this.kills > 0) {
-            this.kill_count.update(digits(this.kills));
-        }else{
-            this.kill_count.update([0]);
-        }
-        if(this.money > 0) {
-            this.money_count.update(digits(this.money));
-        }else{
-            this.money_count.update([0]);
-        }
         ctx.fillText("Lives: ", this.map.maze.background[0].length*64, 10);
         ctx.fillText("Wave: " , this.map.maze.background[0].length*64, 74);
         ctx.fillText("Kills: " , this.map.maze.background[0].length*64, 138);
         ctx.fillText("Money: ", this.map.maze.background[0].length*64, 202);
-        this.startbtn.draw();
     }
     run() {
         let self = this;
@@ -103,36 +85,29 @@ class Game {
             this.towers.forEach(function (tower) {
                 tower.idleDraw();
             });
-            if (this.tower_slots.active_slot !== null) {
-                if (this.tower_slots.active_slot instanceof Tower_Slot) {
-                    if(!this.tower_slots.active_slot.clicked() && !this.tower_slots.active_slot.towers[0].clicked() && !this.tower_slots.active_slot.towers[1].clicked()){
-                        this.tower_slots.active_slot = null;
-                    }else {
-                        if (this.tower_slots.active_slot.towers[0].clicked()) {
-                            let t = this.tower_slots.active_slot.towers[0];
-                            if (this.money - t.cost >= 0) {
-                                t.x = this.tower_slots.active_slot.x;
-                                t.y = this.tower_slots.active_slot.y;
-                                this.money -= t.cost;
-                                this.towers.push(t);
-                                this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                                this.tower_slots.active_slot = null;
-                            }
-                        } else if (this.tower_slots.active_slot.towers[1].clicked()) {
-                            let t = this.tower_slots.active_slot.towers[1];
-                            if (this.money - t.cost >= 0) {
-                                t.x = this.tower_slots.active_slot.x;
-                                t.y = this.tower_slots.active_slot.y;
-                                this.money -= t.cost;
-                                this.towers.push(t);
-                                this.tower_slots.slots.splice(this.tower_slots.slots.indexOf(this.tower_slots.active_slot), 1);
-                                this.tower_slots.active_slot = null;
-                            }
-                        } else {
-                            this.tower_slots.active_slot.drawTowers();
-                        }
+            this.ui.update(this.lives, this.waves, this.kills, this.money);
+            this.ui.draw();
+            for (let i = 0; i < this.tower_slots.slots.length; i++) {
+                if (this.ui.cl1.at_slot(this.tower_slots.slots[i])) {
+                    this.ui.cl1.placeTower(this.tower_slots.slots[i]);
+                    if (this.money - this.ui.cl1.tower.cost >= 0) {
+                        this.tower_slots.slots.splice(i, 1);
+                        this.towers.push(this.ui.cl1.tower);
+                        this.money -= this.ui.cl1.tower.cost;
                     }
+                    this.ui.cl1.reset();
                 }
+                if (this.ui.ml1.at_slot(this.tower_slots.slots[i])) {
+                    this.ui.ml1.placeTower(this.tower_slots.slots[i]);
+                    if (this.money - this.ui.ml1.tower.cost >= 0) {
+                        this.tower_slots.slots.splice(i, 1);
+                        this.towers.push(this.ui.ml1.tower);
+                        this.money -= this.ui.ml1.tower.cost;
+                    }
+                    this.ui.ml1.reset();
+                }
+            }
+            if (this.tower_slots.active_slot !== null) {
                 if (this.tower_slots.active_slot instanceof Tower) {
                     if(!this.tower_slots.active_slot.clicked() && !this.tower_slots.active_slot.next.clicked()){
                         this.tower_slots.active_slot = null;

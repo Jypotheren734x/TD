@@ -28,6 +28,8 @@ document.onkeyup = function (e) {
 };
 var canvas = $('canvas')[0];
 var ctx = canvas.getContext("2d");
+var mousePressed = false;
+var dragging = false;
 var mouse = {x: 1920, y: 1080};
 var bounds = canvas.getBoundingClientRect();
 function mousePosition(e) {
