@@ -33,17 +33,19 @@ class Sprite {
     }
 }
 class Button{
-    constructor(src,x,y){
+    constructor(src, x, y, width, height) {
         this.image = new Image();
         this.image.src = src;
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
     clicked() {
-        return ((mouse.x > this.x) && (mouse.x < (this.x + 100))) && ((mouse.y > this.y) && (mouse.y < (this.y + 100)));
+        return ((mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
     }
     draw(){
-        ctx.drawImage(this.image,this.x, this.y, 100, 100);
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 
 }
@@ -65,6 +67,8 @@ class Tower extends Sprite {
         } else {
             this.next = null;
         }
+        this.cancel = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/cross.png", this.x, this.y + 64, 25, 25);
+        this.done = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/checkmark.png", this.x + 25, this.y + 64, 25, 25);
         this.mx = type.mx * 64;
         this.my = type.my * 64;
         this.ax = type.ax * 64;
@@ -117,6 +121,10 @@ class Tower extends Sprite {
         this.next.drawInfo();
     }
 
+    sell() {
+        this.cancel.draw();
+        this.done.draw();
+    }
     draw() {
         ctx.drawImage(this.image, this.mx, this.my, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
@@ -146,8 +154,12 @@ class Number{
         for(let i = 0, cx = this.x; i<digits.length; i++, cx+=.5){
             this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
         }
+        this.width = digits.length * 64;
+        this.height = 64;
     }
     update(digits){
+        this.width = 300;
+        this.height = 64;
         this.digits = [];
         for(let i = 0, cx = this.x; i<digits.length; i++, cx+=.5){
             this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
@@ -165,6 +177,8 @@ class Money extends Number{
         super(x,y,digits);
     }
     update(digits){
+        this.width = 300;
+        this.height = 64;
         this.digits = [];
         this.digits.push(new Symbol(types.symbols.$, this.x,this.y));
         for(let i = 0, cx = this.x+.5; i<digits.length; i++, cx+=.5){
@@ -286,7 +300,7 @@ class Mob extends Sprite {
     }
 
     draw() {
-        if (!this.atEnd) {
+        if (!this.atEnd && !this.isDead) {
             this.move();
             // ctx.fillText("Health: " + this.health, this.x, this.y + 20);
         }

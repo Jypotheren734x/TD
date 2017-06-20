@@ -16,7 +16,7 @@ class Game {
         this.idle = true;
         this.lives = 150;
         this.kills = 0;
-        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width-100, 0);
+        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width - 100, canvas.height - 100, 100, 100);
         this.life_count = new Number(this.map.maze.background[0].length, 0, digits(this.lives));
         this.wave_count = new Number(this.map.maze.background[0].length, 1, digits(0));
         this.kill_count = new Number(this.map.maze.background[0].length, 2, digits(this.kills));
@@ -47,7 +47,6 @@ class Game {
         let self = this;
         canvas.width = canvas.width;
         this.map.build();
-        this.startbtn.draw();
         if(this.startbtn.clicked()){
             this.idle = false;
             if (this.current_wave + 1 < this.waves.length) {
@@ -79,6 +78,7 @@ class Game {
         ctx.fillText("Wave: " , this.map.maze.background[0].length*64, 74);
         ctx.fillText("Kills: " , this.map.maze.background[0].length*64, 138);
         ctx.fillText("Money: ", this.map.maze.background[0].length*64, 202);
+        this.startbtn.draw();
     }
     run() {
         let self = this;
@@ -87,7 +87,7 @@ class Game {
                 this.idle = true;
                 this.lives -= this.waves[this.current_wave].lives_lost;
                 this.kills += this.waves[this.current_wave].mobs_dead;
-                this.money = this.kills * 100;
+                this.money = this.kills * 10;
                 this.tower_slots.active_slot = null;
             } else {
                 self.waves[self.current_wave].attack();
@@ -145,8 +145,15 @@ class Game {
                                 this.towers.push(t);
                                 this.tower_slots.active_slot = null;
                             }
+                        } else if (this.tower_slots.active_slot.cancel.clicked()) {
+                            console.log('Sold');
+                            this.money += this.tower_slots.active_slot.cost;
+                            this.tower_slots.slots.push(new Tower_Slot(types.ux.empty, this.tower_slots.active_slot.x, this.tower_slots.active_slot.y));
+                            this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
+                            this.tower_slots.active_slot = null;
                         } else {
                             this.tower_slots.active_slot.upgrade();
+                            this.tower_slots.active_slot.sell();
                         }
                     }
                 }
