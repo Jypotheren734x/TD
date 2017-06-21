@@ -20,6 +20,10 @@ class Sprite {
         return (mousePressed && (mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
     }
 
+    hover() {
+        return ((mouse.x > this.x) && (mouse.x < (this.x + this.width))) && ((mouse.y > this.y) && (mouse.y < (this.y + this.height)));
+    }
+
     rotate(angle) {
         ctx.save();
         ctx.translate(this.x + this.swidth / 2, this.y + this.sheight / 2);
@@ -30,6 +34,11 @@ class Sprite {
 
     draw() {
         ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+    }
+}
+class Decoration extends Sprite{
+    constructor(type,x,y){
+        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
     }
 }
 class Button{
@@ -61,8 +70,10 @@ class Tower extends Sprite {
         this.upgrade_cost = type.upgrade_cost;
         if (this.level + 1 < 3 && this.type === 'cannon') {
             this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
+            this.next.x += 64;
         } else if (this.level + 1 < 5 && this.type === 'missile') {
             this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
+            this.next.x += 64;
         } else {
             this.next = null;
         }
@@ -171,12 +182,12 @@ class Tower_Place extends Tower {
             if (!this.drag) {
                 this.startX = mouse.x - this.x;
                 this.startY = mouse.y - this.y;
+                this.reset();
             }
             this.drag = true;
         } else {
             if (!dragging) {
                 this.drag = false;
-                this.drawInfo();
             }
         }
         if (this.drag) {
@@ -197,6 +208,8 @@ class UI {
         this.money_count = new Money(24, 3, digits([0]));
         this.cl1 = new Tower_Place(types.towers.cannon.level_1, 24, 4);
         this.ml1 = new Tower_Place(types.towers.missile.level_1, 24, 5);
+        this.cli_holder = new Tower(types.towers.cannon.level_1, 24, 4);
+        this.mli_holder = new Tower(types.towers.missile.level_1, 24, 5);
     }
 
     update(lives, wave, kills, money) {
@@ -226,6 +239,10 @@ class UI {
         this.startbtn.draw();
         this.cl1.update();
         this.ml1.update();
+        this.cli_holder.draw();
+        this.mli_holder.draw();
+        this.cli_holder.drawInfo();
+        this.mli_holder.drawInfo();
     }
 }
 class Digit extends Sprite{

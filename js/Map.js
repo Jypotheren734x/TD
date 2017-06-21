@@ -4,23 +4,23 @@
 class Map {
     constructor() {
         this.walls = [];
-        this.path = [];
+        this.decorations = [];
         this.maze = {
             background: [
                 ['S', 'S', 'S', 'S', 'cru', 't', 't', 't', 't', 'clu', 'S', 'S', 'S', 'S', 'cru', 't', 't', 't', 't', 'clu', 'S', 'S', 'S', 'S'],
-                ['S', 'S', 'S', 'S', 'l', 'ctl', 'b', 'b', 'ctr', 'r', 'S', 'S', 'S', 'S', 'l', 'ctl', 'b', 'b', 'ctr', 'r', 'S', 'S', 'S', 'S'],
-                ['S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S'],
+                ['S', 'B', 'S', 'S', 'l', 'ctl', 'b', 'b', 'ctr', 'r', 'S', 'S', 'S', 'S', 'l', 'ctl', 'b', 'b', 'ctr', 'r', 'S', 'S', 'S', 'S'],
+                ['S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'B', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'B', 'S'],
                 ['S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S'],
                 ['cru', 't', 't', 't', 'cbr', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'cbl', 't', 't', 't', 'clu'],
                 ['l', 'ctl', 'b', 'b', 'b', 'cld', 'S', 'S', 'l', 'cbl', 't', 't', 't', 't', 'cbr', 'r', 'S', 'S', 'crd', 'b', 'b', 'b', 'ctr', 'r'],
-                ['l', 'r', 'S', 'S', 'S', 'S', 'S', 'S', 'crd', 'b', 'b', 'b', 'b', 'b', 'b', 'cld', 'S', 'S', 'S', 'S', 'S', 'S', 'l', 'r'],
+                ['l', 'r', 'S', 'S', 'S', 'B', 'S', 'S', 'crd', 'b', 'b', 'b', 'b', 'b', 'b', 'cld', 'S', 'S', 'S', 'S', 'S', 'S', 'l', 'r'],
                 ['l', 'r', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'l', 'r'],
                 ['l', 'cbl', 't', 't', 't', 't', 't', 't', 't', 't', 't', 'clu', 'cru', 't', 't', 't', 't', 't', 't', 't', 't', 't', 'cbr', 'r'],
                 ['crd', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'ctr', 'r', 'l', 'ctl', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'cld'],
                 ['S', 'cru', 't', 't', 't', 't', 't', 't', 't', 't', 'cbr', 'r', 'l', 'cbl', 't', 't', 't', 't', 't', 't', 't', 't', 't', 'clu'],
                 ['S', 'l', 'ctl', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'cld', 'crd', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'ctr', 'r'],
-                ['S', 'l', 'r', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'l', 'r'],
-                ['S', 'l', 'r', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'l', 'r']],
+                ['S', 'l', 'r', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'R', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'l', 'r'],
+                ['B', 'l', 'r', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'B', 'S', 'S', 'l', 'r']],
             path: findPath([
                 ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'],
                 ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'],
@@ -58,8 +58,13 @@ class Map {
                     case 'S':
                         this.walls.push(new Wall(types.walls.green.solid, x, y));
                         break;
-                    case ' ':
-                        this.path.push(new Path(types.path.brown, x, y));
+                    case 'B':
+                        this.decorations.push(new Decoration(types.decorations.big_bush,x,y));
+                        this.walls.push(new Wall(types.walls.green.solid,x,y));
+                        break;
+                    case 'R':
+                        this.decorations.push(new Decoration(types.decorations.big_rock,x,y));
+                        this.walls.push(new Wall(types.walls.green.solid,x,y));
                         break;
                     case'b':
                         this.walls.push(new Wall(types.walls.green.bottom, x, y));
@@ -109,8 +114,8 @@ class Map {
         this.walls.forEach(function (wall) {
             wall.draw();
         });
-        this.path.forEach(function (path) {
-            path.draw();
+        this.decorations.forEach(function (decoration) {
+            decoration.draw();
         });
     }
 }

@@ -51,6 +51,16 @@ function digits(n){
 }
 var TO_RADIANS = Math.PI / 180;
 var types = {
+    decorations:{
+        big_bush:{x:15,y:5},
+        medium_bush:{x:16,y:5},
+        small_bush:{x:17,y:5},
+        round_bush:{x:18,y:5},
+        star_bush:{x:19,y:5},
+        big_rock:{x:21,y:5},
+        medium_rock:{x:22,y:5},
+        small_rock:{x:20,y:5},
+    },
     numbers:{
         0:{x:0,y:12},
         1:{x:1,y:12},

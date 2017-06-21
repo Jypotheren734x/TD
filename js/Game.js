@@ -70,13 +70,15 @@ class Game {
                 this.idle = true;
                 this.lives -= this.waves[this.current_wave].lives_lost;
                 this.kills += this.waves[this.current_wave].mobs_dead;
-                this.money = this.kills * 10;
+                this.money += this.kills * 10;
                 this.tower_slots.active_slot = null;
             } else {
                 self.waves[self.current_wave].attack();
                 this.towers.forEach(function (tower) {
                     tower.target(self.waves[self.current_wave].mobs);
                 });
+                this.ui.update(this.lives, this.waves, this.kills, this.money);
+                this.ui.draw();
             }
         } else {
             for (let i = 0; i < this.tower_slots.slots.length; i++) {
@@ -116,6 +118,7 @@ class Game {
                             let t = this.tower_slots.active_slot.next;
                             if (this.money - this.tower_slots.active_slot.upgrade_cost >= 0) {
                                 this.money -= this.tower_slots.active_slot.upgrade_cost;
+                                t.x -= 64;
                                 this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
                                 this.towers.push(t);
                                 this.tower_slots.active_slot = null;
@@ -132,11 +135,6 @@ class Game {
                     }
                 }
             }else {
-                for (let i = 0; i < this.tower_slots.slots.length; i++) {
-                    if (this.tower_slots.slots[i].clicked()) {
-                        this.tower_slots.active_slot = this.tower_slots.slots[i];
-                    }
-                }
                 for (let i = 0; i < this.towers.length; i++) {
                     if (this.towers[i].clicked() && this.towers[i].type === 'cannon' && this.towers[i].level === 1) {
                         this.tower_slots.active_slot = this.towers[i];
