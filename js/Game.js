@@ -18,7 +18,7 @@ class Game {
         this.kills = 0;
         this.ui = new UI();
         ctx.font = "15px kenpixel";
-        canvas.onmousemove = function (e) {
+        canvas.onmousemove = function (e){
             mouse = mousePosition(e);
         };
         canvas.onmousedown = function (e) {
@@ -115,7 +115,6 @@ class Game {
                         if (this.tower_slots.active_slot.next.clicked()) {
                             let t = this.tower_slots.active_slot.next;
                             if (this.money - this.tower_slots.active_slot.upgrade_cost >= 0) {
-                                t.x -= 64;
                                 this.money -= this.tower_slots.active_slot.upgrade_cost;
                                 this.towers.splice(this.towers.indexOf(this.tower_slots.active_slot), 1);
                                 this.towers.push(t);
