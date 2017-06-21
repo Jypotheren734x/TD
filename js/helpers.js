@@ -28,6 +28,8 @@ document.onkeyup = function (e) {
 };
 var canvas = $('canvas')[0];
 var ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth - 40;
+canvas.height = window.innerHeight - 50;
 var mousePressed = false;
 var dragging = false;
 var mouse = {x: 1920, y: 1080};
@@ -50,6 +52,14 @@ function digits(n){
     return array;
 }
 var TO_RADIANS = Math.PI / 180;
+var scale = 64;
+var mob_scale = 32;
+var tilesheet = "img/Tilesheet/towerDefense_tilesheet.png";
+if (canvas.width > 3000 && canvas.height > 2000) {
+    scale = 128;
+    mob_scale = 64;
+    tilesheet = 'img/Tilesheet/towerDefense_tilesheet@2.png';
+}
 var types = {
     decorations:{
         big_bush:{x:15,y:5},
@@ -111,11 +121,11 @@ var types = {
             level_1: {
                 type: "cannon",
                 level: 1,
-                cost: 100,
+                cost: 110,
                 attack: 10,
                 attack_speed: 1,
                 range: 2,
-                upgrade_cost: 200,
+                upgrade_cost: 120,
                 x: 19,
                 y: 10,
                 mx: 19,
@@ -126,7 +136,7 @@ var types = {
             level_2: {
                 type: "cannon",
                 level: 2,
-                cost: 200,
+                cost: 220,
                 attack: 20,
                 range: 2,
                 attack_speed: 1,
@@ -141,11 +151,11 @@ var types = {
             level_1: {
                 type: "missile",
                 level: 1,
-                cost: 100,
-                attack: 15,
+                cost: 210,
+                attack: 25,
                 range: 5,
-                attack_speed: 5,
-                upgrade_cost: 200,
+                attack_speed: 7,
+                upgrade_cost: 310,
                 x: 19,
                 y: 9,
                 mx: 19,
@@ -154,11 +164,11 @@ var types = {
             level_2: {
                 type: "missile",
                 level: 2,
-                cost: 200,
-                attack: 25,
+                cost: 310,
+                attack: 35,
                 range: 5,
-                attack_speed: 5,
-                upgrade_cost: 300,
+                attack_speed: 7,
+                upgrade_cost: 410,
                 x: 20,
                 y: 9,
                 mx: 19,
@@ -167,11 +177,11 @@ var types = {
             level_3: {
                 type: "missile",
                 level: 3,
-                cost: 300,
-                attack: 35,
+                cost: 410,
+                attack: 45,
                 range: 5,
-                attack_speed: 5,
-                upgrade_cost: 400,
+                attack_speed: 7,
+                upgrade_cost: 510,
                 x: 21,
                 y: 9,
                 mx: 19,
@@ -180,10 +190,10 @@ var types = {
             level_4: {
                 type: "missile",
                 level: 4,
-                cost: 400,
-                attack: 45,
+                cost: 510,
+                attack: 55,
                 range: 5,
-                attack_speed: 5,
+                attack_speed: 7,
                 upgrade_cost: 0,
                 x: 22,
                 y: 9,
@@ -195,7 +205,11 @@ var types = {
     mobs: {
         soldier: {type: "Soldier", level: 1, speed: 1, x: 15, y: 10},
         robot: {type: "Robot", level: 2, speed: 1, x: 16, y: 10},
-        super_soldier: {type: "Super-Soldier", speed: 1, level: 3, x: 17, y: 10},
-        cyborg: {type: "Cyborg", level: 4, speed: 1, x: 18, y: 10}
+        super_soldier: {type: "Super-Soldier", level: 3, speed: 1, x: 17, y: 10},
+        cyborg: {type: "Cyborg", level: 4, speed: 1, x: 18, y: 10},
+        tank_1: {type: "Boss", level: 20, speed: 1, x: 15, y: 11, wx: 15, wy: 12},
+        tank_2: {type: "Boss", level: 30, speed: 1, x: 16, y: 11, wx: 16, wy: 12},
+        plane_1: {type: "Air", level: 2, speed: 1, x: 17, y: 11, wx: 17, wy: 12},
+        plane_2: {type: "Air", level: 3, speed: 1, x: 18, y: 11, wx: 17, wy: 12},
     }
 };

@@ -5,7 +5,7 @@
 class Sprite {
     constructor(x, y, width, height, sx, sy, swidth, sheight) {
         this.image = new Image();
-        this.image.src = "img/Tilesheet/towerDefense_tilesheet.png";
+        this.image.src = tilesheet;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -38,7 +38,7 @@ class Sprite {
 }
 class Decoration extends Sprite{
     constructor(type,x,y){
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
     }
 }
 class Button{
@@ -60,7 +60,7 @@ class Button{
 }
 class Tower extends Sprite {
     constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
         this.type = type.type;
         this.level = type.level;
         this.attack = type.attack;
@@ -70,20 +70,20 @@ class Tower extends Sprite {
         this.upgrade_cost = type.upgrade_cost;
         if (this.level + 1 < 3 && this.type === 'cannon') {
             this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
-            this.next.x += 64;
+            this.next.x += scale;
         } else if (this.level + 1 < 5 && this.type === 'missile') {
             this.next = new Tower(types["towers"][type.type]["level_" + (this.level + 1)], x, y);
-            this.next.x += 64;
+            this.next.x += scale;
         } else {
             this.next = null;
         }
-        this.cancel = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/cross.png", this.x, this.y + 64, 25, 25);
-        this.done = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/checkmark.png", this.x + 25, this.y + 64, 25, 25);
-        this.mx = type.mx * 64;
-        this.my = type.my * 64;
-        this.ax = type.ax * 64;
-        this.ay = type.ay * 64;
-        this.range = type.range * 64;
+        this.cancel = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/cross.png", this.x, this.y + scale, 25, 25);
+        this.done = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/checkmark.png", this.x + 25, this.y + scale, 25, 25);
+        this.mx = type.mx * scale;
+        this.my = type.my * scale;
+        this.ax = type.ax * scale;
+        this.ay = type.ay * scale;
+        this.range = type.range * scale;
     }
     inRange(target){
         let dx = target.x - this.x;
@@ -115,18 +115,18 @@ class Tower extends Sprite {
     }
 
     drawInfo() {
-        ctx.fillText(this.type, this.x + 64, this.y + 10);
-        ctx.fillText("Level: " + this.level, this.x + 64, this.y + 20);
-        ctx.fillText("Atk: " + this.attack, this.x + 64, this.y + 30);
-        ctx.fillText("Atk Spd: " + this.attack_speed, this.x + 64, this.y + 40);
-        ctx.fillText("Cost: " + this.cost, this.x + 64, this.y + 50);
-        ctx.fillText("Range: " + this.range/64, this.x + 64, this.y + 60);
+        ctx.fillText(this.type, this.x + scale, this.y + 10);
+        ctx.fillText("Level: " + this.level, this.x + scale, this.y + 20);
+        ctx.fillText("Atk: " + this.attack, this.x + scale, this.y + 30);
+        ctx.fillText("Atk Spd: " + this.attack_speed, this.x + scale, this.y + 40);
+        ctx.fillText("Cost: " + this.cost, this.x + scale, this.y + 50);
+        ctx.fillText("Range: " + this.range / scale, this.x + scale, this.y + 60);
     }
 
     upgrade() {
         this.background = new Image();
         this.background.src = 'img/uipack_fixed/PNG/yellow_panel.png';
-        ctx.drawImage(this.background, this.next.x, this.next.y, 120, 64);
+        ctx.drawImage(this.background, this.next.x, this.next.y, 120, scale);
         this.next.draw();
         this.next.drawInfo();
     }
@@ -151,8 +151,8 @@ class Tower extends Sprite {
 class Tower_Place extends Tower {
     constructor(type, x, y) {
         super(type, x, y);
-        this.ox = x * 64;
-        this.oy = y * 64;
+        this.ox = x * scale;
+        this.oy = y * scale;
         this.startX = 0;
         this.startY = 0;
         this.drag = false;
@@ -165,7 +165,7 @@ class Tower_Place extends Tower {
     }
 
     placeTower(slot) {
-        this.tower = new Tower(types.towers[this.type]["level_" + this.level], slot.x / 64, slot.y / 64);
+        this.tower = new Tower(types.towers[this.type]["level_" + this.level], slot.x / scale, slot.y / scale);
     }
 
     at_slot(slot) {
@@ -173,7 +173,7 @@ class Tower_Place extends Tower {
             let dx = slot.x - this.x;
             let dy = slot.y - this.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
-            return distance < 64;
+            return distance < scale;
         }
     }
 
@@ -201,7 +201,9 @@ class Tower_Place extends Tower {
 }
 class UI {
     constructor() {
-        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width - 100, canvas.height - 100, 100, 100);
+        this.paused = true;
+        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/power.png", canvas.width - 100, canvas.height - 100, 100, 100);
+        this.fastforwardbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/fastForward.png", canvas.width - 200, canvas.height - 100, 100, 100);
         this.life_count = new Number(24, 0, digits([0]));
         this.wave_count = new Number(24, 1, digits([0]));
         this.kill_count = new Number(24, 2, digits([0]));
@@ -233,26 +235,32 @@ class UI {
         } else {
             this.money_count.update([0]);
         }
+        this.fastforward = !!this.fastforwardbtn.clicked();
     }
 
     draw() {
-        this.startbtn.draw();
-        this.cl1.update();
-        this.ml1.update();
         this.cli_holder.draw();
         this.mli_holder.draw();
         this.cli_holder.drawInfo();
         this.mli_holder.drawInfo();
+        this.startbtn.draw();
+        this.fastforwardbtn.draw();
+        if (!this.ml1.drag) {
+            this.cl1.update();
+        }
+        if (!this.cl1.drag) {
+            this.ml1.update();
+        }
     }
 }
 class Digit extends Sprite{
     constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
     }
 }
 class Symbol extends Sprite{
     constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
     }
 }
 class Number{
@@ -263,12 +271,12 @@ class Number{
         for(let i = 0, cx = this.x; i<digits.length; i++, cx+=.5){
             this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
         }
-        this.width = digits.length * 64;
-        this.height = 64;
+        this.width = digits.length * scale;
+        this.height = scale;
     }
     update(digits){
         this.width = 300;
-        this.height = 64;
+        this.height = scale;
         this.digits = [];
         for(let i = 0, cx = this.x; i<digits.length; i++, cx+=.5){
             this.digits.push(new Digit(types.numbers[digits[i]],cx,this.y));
@@ -287,7 +295,7 @@ class Money extends Number{
     }
     update(digits){
         this.width = 300;
-        this.height = 64;
+        this.height = scale;
         this.digits = [];
         this.digits.push(new Symbol(types.symbols.$, this.x,this.y));
         for(let i = 0, cx = this.x+.5; i<digits.length; i++, cx+=.5){
@@ -303,31 +311,31 @@ class Money extends Number{
 }
 class Tower_Slot extends Sprite {
     constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
-        this.width = 64;
-        this.height = 64;
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
+        this.width = scale;
+        this.height = scale;
     }
 }
 class Wall extends Sprite {
     constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
     }
 }
 class Path extends Sprite {
     constructor(type, x, y) {
-        super(x * 64, y * 64, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
     }
 }
 class Mob extends Sprite {
     constructor(type, x, y, path) {
-        super(x * 32, y * 32, 64, 64, type.x * 64, type.y * 64, 64, 64);
+        super(x * mob_scale, y * mob_scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
         this.health = type.level * 1200;
         this.level = type.level;
         this.isDead = false;
         this.speed = type.speed;
         this.current_node = path[0];
-        this.targetX = this.current_node.x * 32;
-        this.targetY = this.current_node.y * 32;
+        this.targetX = this.current_node.x * mob_scale;
+        this.targetY = this.current_node.y * mob_scale;
         this.atEnd = false;
         this.health_bar = new Image();
         this.health_bar.src = "img/uipack_fixed/PNG/green_button00.png";
@@ -376,21 +384,21 @@ class Mob extends Sprite {
         if (this.current_node.parent !== null) {
             if (this.x === this.targetX && this.y === this.targetY) {
                 this.current_node = this.current_node.parent;
-                this.targetX = this.current_node.x * 32;
-                this.targetY = this.current_node.y * 32;
+                this.targetX = this.current_node.x * mob_scale;
+                this.targetY = this.current_node.y * mob_scale;
             } else {
                 if (this.x < this.targetX) {
                     this.right();
-                    ctx.drawImage(this.health_bar, this.x + (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
+                    ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
                 } else if (this.x > this.targetX) {
                     this.left();
-                    ctx.drawImage(this.health_bar, this.x + (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
+                    ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
                 } else if (this.y < this.targetY) {
                     this.down();
-                    ctx.drawImage(this.health_bar, this.x + (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
+                    ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
                 } else if (this.y > this.targetY) {
                     this.up();
-                    ctx.drawImage(this.health_bar, this.x - (this.level * 10), this.y + 20, (this.health / 1200) * 10, 5);
+                    ctx.drawImage(this.health_bar, this.x - (this.level), this.y + 20, (this.health / 1200) * 10, 5);
                 }
             }
         } else {
@@ -407,4 +415,137 @@ class Mob extends Sprite {
         // ctx.fillText("RCX: " + this.current_node.x + " RCY: "+ this.current_node.y ,this.x, this.y + 20);
     }
 
+    drawIdle() {
+        if (this.x < this.targetX) {
+            this.rotate(0);
+            ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+        } else if (this.x > this.targetX) {
+            this.rotate(180);
+            ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+        } else if (this.y < this.targetY) {
+            this.rotate(90);
+            ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+        } else if (this.y > this.targetY) {
+            this.rotate(270);
+            ctx.drawImage(this.health_bar, this.x - (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+        }
+    }
+
+}
+class Air_Mob extends Mob {
+    constructor(type, x, y) {
+        super(type, x, y, [new Node('', 15 * scale, 24 * scale, false)]);
+        this.wx = type.wx * scale;
+        this.wy = type.wy * scale;
+        this.weapon = new Sprite(this.x - 10, this.y + 10, scale, scale, this.wx, this.wy, scale, scale);
+    }
+
+    move() {
+        this.x += this.speed;
+        this.weapon.x += this.speed;
+        this.weapon.draw();
+        ctx.drawImage(this.image, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+    }
+
+    draw() {
+        if (this.x < scale * 23 && !this.isDead) {
+            this.move();
+        } else {
+            this.atEnd = true;
+        }
+    }
+}
+class Boss extends Mob {
+    constructor(type, x, y, path) {
+        super(type, x, y, path);
+        this.wx = type.wx * scale;
+        this.wy = type.wy * scale;
+        this.weapon = new Sprite(this.x, this.y, scale, scale, this.wx, this.wy, scale, scale);
+    }
+
+    up() {
+        if (this.y - this.speed > this.targetY) {
+            this.y -= this.speed;
+            this.weapon.y -= this.speed;
+        } else {
+            this.y = this.targetY;
+            this.weapon.y = this.targetY;
+        }
+        this.rotate(270);
+        this.weapon.rotate(270);
+    }
+
+    down() {
+
+        if (this.y + this.speed < this.targetY) {
+            this.y += this.speed;
+            this.weapon.y += this.speed;
+        } else {
+            this.y = this.targetY;
+            this.weapon.y = this.targetY;
+        }
+        this.rotate(90);
+        this.weapon.rotate(90);
+    }
+
+    left() {
+
+        if (this.x - this.speed > this.targetX) {
+            this.x -= this.speed;
+            this.weapon.x -= this.speed;
+        } else {
+            this.x = this.targetX;
+            this.weapon.x = this.targetX;
+        }
+        this.rotate(180);
+        this.weapon.rotate(180);
+    }
+
+    right() {
+
+        if (this.x + this.speed < this.targetX) {
+            this.x += this.speed;
+            this.weapon.x += this.speed;
+        } else {
+            this.x = this.targetX;
+            this.weapon.x = this.targetX;
+        }
+        this.rotate(0);
+        this.weapon.rotate(0);
+    }
+
+    move() {
+        if (this.current_node.parent !== null) {
+            if (this.x === this.targetX && this.y === this.targetY) {
+                this.current_node = this.current_node.parent;
+                this.targetX = this.current_node.x * mob_scale;
+                this.targetY = this.current_node.y * mob_scale;
+            } else {
+                if (this.x < this.targetX) {
+                    this.right();
+                    ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+                } else if (this.x > this.targetX) {
+                    this.left();
+                    ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+                } else if (this.y < this.targetY) {
+                    this.down();
+                    ctx.drawImage(this.health_bar, this.x + (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+                } else if (this.y > this.targetY) {
+                    this.up();
+                    ctx.drawImage(this.health_bar, this.x - (this.level), this.y + 20, (this.health / 1200) * 10, 5);
+                }
+            }
+        } else {
+            this.atEnd = true;
+        }
+    }
+    draw() {
+        if (!this.atEnd && !this.isDead) {
+            this.move();
+        }
+        // ctx.fillText("X: "+this.x + " Y: " +this.y ,this.x, this.y);
+        // ctx.fillText("CX: " + this.targetX + " CY: "+ this.targetY ,this.x, this.y + 10);
+        // ctx.fillText("RCX: " + this.current_node.x + " RCY: "+ this.current_node.y ,this.x, this.y + 20);
+    }
 }
