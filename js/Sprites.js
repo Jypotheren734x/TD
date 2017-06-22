@@ -329,6 +329,7 @@ class Path extends Sprite {
 class Mob extends Sprite {
     constructor(type, x, y, path) {
         super(x * mob_scale, y * mob_scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
+        this.type = type.type;
         this.health = type.level * 1200;
         this.level = type.level;
         this.isDead = false;

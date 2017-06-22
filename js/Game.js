@@ -94,6 +94,9 @@ class Game {
                 this.tower_slots.active_slot = null;
                 this.ui.cl1.reset();
                 this.ui.ml1.reset();
+                if (this.lives <= 0) {
+                    alert("You Loose");
+                }
             } else {
                 if (this.ui.startbtn.clicked()) {
                     this.ui.paused = !this.ui.paused;
