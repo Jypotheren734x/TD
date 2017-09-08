@@ -81,7 +81,7 @@ class Game {
         ctx.fillText("Wave: ", this.map.maze.background[0].length * scale, 74);
         ctx.fillText("Kills: ", this.map.maze.background[0].length * scale, 138);
         ctx.fillText("Money: ", this.map.maze.background[0].length * scale, 202);
-        ctx.fillText("Drag and drop towers", this.map.maze.background[0].length * scale, 268);
+        ctx.fillText("Drag and drop towers", this.map.maze.background[0].length * scale, 460);
     }
     run() {
         let self = this;
