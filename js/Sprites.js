@@ -202,7 +202,7 @@ class Tower_Place extends Tower {
 class UI {
     constructor() {
         this.paused = true;
-        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/power.png", canvas.width - 100, canvas.height - 100, 100, 100);
+        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width - 100, canvas.height - 100, 100, 100);
         this.life_count = new Number(24, 0, digits([0]));
         this.wave_count = new Number(24, 1, digits([0]));
         this.kill_count = new Number(24, 2, digits([0]));
