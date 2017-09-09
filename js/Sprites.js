@@ -242,7 +242,6 @@ class UI {
         this.cli_holder.drawInfo();
         this.mli_holder.drawInfo();
         this.startbtn.draw();
-        this.fastforwardbtn.draw();
         if (!this.ml1.drag) {
             this.cl1.update();
         }
