@@ -234,7 +234,6 @@ class UI {
         } else {
             this.money_count.update([0]);
         }
-        this.fastforward = !!this.fastforwardbtn.clicked();
     }
 
     draw() {
