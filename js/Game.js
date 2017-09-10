@@ -12,7 +12,7 @@ class Game {
             active_slot: null
         };
         this.current_wave = -1;
-        this.money = 3030;
+        this.money = 330;
         this.idle = true;
         this.lives = 200;
         this.kills = 0;
