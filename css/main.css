@@ -1,7 +1,18 @@
-@font-face { font-family: kenpixel; src: url('../img/ken-fonts/kenvector_future.ttf'); }
+@font-face {
+    font-family: kenvector_future;
+    src: url('../fonts/kenvector_future.ttf');
+}
+
+@font-face {
+    font-family: ELIXIA;
+    src: url('../fonts/ELIXIA.ttf');
+}
 canvas {
     border: solid black;
-    font-family: kenpixel;
+}
+
+body {
+    font-family: ELIXIA;
 }
 #start {
     top: 0;

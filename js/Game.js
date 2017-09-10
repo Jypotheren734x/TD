@@ -12,7 +12,7 @@ class Game {
             active_slot: null
         };
         this.current_wave = -1;
-        this.money = 330;
+        this.money = 3030;
         this.idle = true;
         this.lives = 200;
         this.kills = 0;
@@ -77,11 +77,14 @@ class Game {
         }
         this.ui.update(this.lives, this.current_wave, this.kills, this.money);
         this.ui.draw();
-        ctx.fillText("Lives: ", this.map.maze.background[0].length * scale, 10);
+        ctx.font = '18px serif';
+        ctx.fillText("Lives: ", this.map.maze.background[0].length * scale, 15);
         ctx.fillText("Wave: ", this.map.maze.background[0].length * scale, 74);
         ctx.fillText("Kills: ", this.map.maze.background[0].length * scale, 138);
         ctx.fillText("Money: ", this.map.maze.background[0].length * scale, 202);
-        ctx.fillText("Slowly Drag and drop towers", this.map.maze.background[0].length * scale, 396);
+        ctx.fillText("Instructions:", this.map.maze.background[0].length * scale, 396);
+        ctx.fillText("Slowly drag and drop towers", this.map.maze.background[0].length * scale, 420);
+        ctx.fillText("Hit the start button", this.map.maze.background[0].length * scale, 440);
     }
     run() {
         let self = this;
