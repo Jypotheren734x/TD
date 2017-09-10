@@ -104,11 +104,6 @@ class Game {
                 }
                 console.log(this.ui.paused);
                 if (this.ui.paused === false) {
-                    if (this.ui.fastforward) {
-                        this.waves[this.current_wave].attack(1.5);
-                    } else {
-                        this.waves[this.current_wave].attack(1);
-                    }
                     this.towers.forEach(function (tower) {
                         tower.target(self.waves[self.current_wave].mobs);
                     });
