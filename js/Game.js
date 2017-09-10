@@ -85,6 +85,7 @@ class Game {
         ctx.fillText("Instructions:", this.map.maze.background[0].length * scale, 396);
         ctx.fillText("1. Slowly drag and drop towers.", this.map.maze.background[0].length * scale, 420);
         ctx.fillText("2. Hit the start button.", this.map.maze.background[0].length * scale, 440);
+        ctx.font = '12px serif';
     }
     run() {
         let self = this;
