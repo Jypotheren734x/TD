@@ -83,7 +83,7 @@ class Game {
         ctx.fillText("Kills: ", this.map.maze.background[0].length * scale, 138);
         ctx.fillText("Money: ", this.map.maze.background[0].length * scale, 202);
         ctx.fillText("Instructions:", this.map.maze.background[0].length * scale, 396);
-        ctx.fillText("Slowly drag and drop towers", this.map.maze.background[0].length * scale, 420);
+        ctx.fillText("Slowly drag and drop attack towers", this.map.maze.background[0].length * scale, 420);
         ctx.fillText("Hit the start button", this.map.maze.background[0].length * scale, 440);
     }
     run() {
