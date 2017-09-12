@@ -115,11 +115,12 @@ class Tower extends Sprite {
     }
 
     drawInfo() {
+        ctx.font = '12px serif';
         ctx.fillText(this.type, this.x + scale, this.y + 10);
         ctx.fillText("Level: " + this.level, this.x + scale, this.y + 20);
         ctx.fillText("Atk: " + this.attack, this.x + scale, this.y + 30);
         ctx.fillText("Atk Spd: " + this.attack_speed, this.x + scale, this.y + 40);
-        ctx.fillText("Cost: " + this.cost, this.x + scale, this.y + 50);
+        ctx.fillText("Cost: $" + this.cost, this.x + scale, this.y + 50);
         ctx.fillText("Range: " + this.range / scale, this.x + scale, this.y + 60);
     }
 
