@@ -17,6 +17,10 @@ class Game {
         this.lives = 200;
         this.kills = 0;
         this.ui = new UI();
+        this.ui.startbtn.click(function () {
+            self.idle = false;
+            self.ui.paused = !self.ui.paused;
+        });
         ctx.font = "15px kenpixel";
         canvas.onmousemove = function (e){
             mouse = mousePosition(e);
@@ -56,17 +60,15 @@ class Game {
         let self = this;
         canvas.width = canvas.width;
         this.map.build();
-        if (this.ui.startbtn.clicked() && this.ui.paused) {
+        if (this.ui.paused) {
             if (this.waves[this.current_wave] !== undefined || this.current_wave === -1) {
                 if (this.current_wave === -1) {
                     this.ui.paused = false;
-                    this.idle = false;
                     this.current_wave++;
                     mouse = {};
                 } else {
                     if (this.waves[this.current_wave].complete) {
                         this.ui.paused = false;
-                        this.idle = false;
                         if (this.current_wave + 1 < this.waves.length) {
                             this.current_wave++;
                         }
@@ -94,7 +96,7 @@ class Game {
                 this.ui.paused = true;
                 this.lives -= this.waves[this.current_wave].lives_lost;
                 this.kills += this.waves[this.current_wave].mobs_dead;
-                this.money += this.kills * 10;
+                this.money += this.waves[this.current_wave].mobs_dead * 10;
                 this.tower_slots.active_slot = null;
                 this.ui.cl1.reset();
                 this.ui.ml1.reset();
@@ -102,10 +104,6 @@ class Game {
                     alert("You Loose");
                 }
             } else {
-                if (this.ui.startbtn.clicked()) {
-                    this.ui.paused = !this.ui.paused;
-                }
-                console.log(this.ui.paused);
                 if (this.ui.paused === false) {
                     this.waves[this.current_wave].attack(1);
                     this.towers.forEach(function (tower) {
@@ -215,7 +213,7 @@ class Wave {
         let self = this;
         if (this.mobs_dead + this.lives_lost === this.mobs.length) {
             this.complete = true;
-            console.log("Wave Cleared");
+            console.log("Wave Cleared: Lives lost(" + self.lives_lost + ") Mobs Killed: (" + self.mobs_dead + ")");
         }
         this.lead_mob = 0;
         this.lives_lost = 0;
@@ -224,6 +222,7 @@ class Wave {
             if (mob.health > 0) {
                 mob.draw();
                 if (mob.atEnd) {
+                    console.log(self.lives_lost, self.mobs_dead);
                     if (mob.type === 'Boss') {
                         self.lives_lost += 10;
                     } else if (mob.type === 'Air') {

@@ -5,10 +5,10 @@ $(document).ready(function () {
     let game = new Game();
 
     function mainLoop() {
+        window.requestAnimationFrame(mainLoop);
         game.update();
         game.run();
-        requestAnimationFrame(mainLoop);
     }
 
-    requestAnimationFrame(mainLoop);
+    mainLoop();
 });

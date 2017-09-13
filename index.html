@@ -7,10 +7,17 @@
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/main.css">
-        <script src="https://cdn.rawgit.com/konvajs/konva/1.6.3/konva.min.js"></script>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </head>
     <body>
         <canvas id='game' width="1820" height="895"></canvas>
+        <div class="fixed-action-btn" style="margin-bottom: 70px; margin-right: 20px;">
+            <button id="start" class="btn btn-large btn-floating waves-effect">Play</button>
+        </div>
         <script src="js/helpers.js"></script>
         <script src="js/Pathing.js"></script>
         <script src="js/Sprites.js"></script>

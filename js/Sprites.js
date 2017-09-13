@@ -202,8 +202,8 @@ class Tower_Place extends Tower {
 }
 class UI {
     constructor() {
-        this.paused = true;
-        this.startbtn = new Button("img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png", canvas.width - 100, canvas.height - 100, 100, 100);
+        this.paused = false;
+        this.startbtn = $('#start');
         this.life_count = new Number(24, 0, digits([0]));
         this.wave_count = new Number(24, 1, digits([0]));
         this.kill_count = new Number(24, 2, digits([0]));
@@ -242,7 +242,6 @@ class UI {
         this.mli_holder.draw();
         this.cli_holder.drawInfo();
         this.mli_holder.drawInfo();
-        this.startbtn.draw();
         if (!this.ml1.drag) {
             this.cl1.update();
         }
