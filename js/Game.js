@@ -225,8 +225,6 @@ class Wave {
                     console.log(self.lives_lost, self.mobs_dead);
                     if (mob.type === 'Boss') {
                         self.lives_lost += 10;
-                    } else if (mob.type === 'Air') {
-                        self.lives_lost += 5;
                     } else {
                         self.lives_lost++;
                     }
