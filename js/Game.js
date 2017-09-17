@@ -211,7 +211,7 @@ class Wave {
 
     attack(speed_multiplier) {
         let self = this;
-        if (this.mobs_dead + this.lives_lost === this.mobs.length) {
+        if (this.mobs_dead + this.lives_lost >= this.mobs.length) {
             this.complete = true;
             console.log("Wave Cleared: Lives lost(" + self.lives_lost + ") Mobs Killed: (" + self.mobs_dead + ")");
         }
