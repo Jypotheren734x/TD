@@ -212,7 +212,7 @@ class Wave {
 
     attack(speed_multiplier) {
         let self = this;
-        if (this.mobs_dead + this.lives_lost === this.mobs.length) {
+        if (this.mobs_dead + this.lives_lost >= this.mobs.length) {
             this.complete = true;
             console.log("Wave Cleared: Lives lost(" + self.lives_lost + ") Mobs Killed: (" + self.mobs_dead + ")");
         }
@@ -226,8 +226,6 @@ class Wave {
                     console.log(self.lives_lost, self.mobs_dead);
                     if (mob.type === 'Boss') {
                         self.lives_lost += 10;
-                    } else if (mob.type === 'Air') {
-                        self.lives_lost += 5;
                     } else {
                         self.lives_lost++;
                     }
