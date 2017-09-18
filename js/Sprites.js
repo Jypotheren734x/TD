@@ -318,11 +318,6 @@ class Wall extends Sprite {
         super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
     }
 }
-class Path extends Sprite {
-    constructor(type, x, y) {
-        super(x * scale, y * scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
-    }
-}
 class Mob extends Sprite {
     constructor(type, x, y, path) {
         super(x * mob_scale, y * mob_scale, scale, scale, type.x * scale, type.y * scale, scale, scale);
