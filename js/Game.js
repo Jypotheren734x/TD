@@ -58,6 +58,7 @@ class Game {
 
     update() {
         let self = this;
+        canvas.width = canvas.width;
         this.map.build();
         if (this.ui.paused) {
             if (this.waves[this.current_wave] !== undefined || this.current_wave === -1) {
