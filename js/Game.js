@@ -58,7 +58,6 @@ class Game {
 
     update() {
         let self = this;
-        canvas.width = canvas.width;
         this.map.build();
         if (this.ui.paused) {
             if (this.waves[this.current_wave] !== undefined || this.current_wave === -1) {
@@ -87,7 +86,6 @@ class Game {
         ctx.fillText("Instructions:", this.map.maze.background[0].length * scale, 396);
         ctx.fillText("Slowly drag and drop attack towers.", this.map.maze.background[0].length * scale, 420);
         ctx.fillText("Hit the play button", this.map.maze.background[0].length * scale, 440);
-        ctx.fillText("If the mobs don't go, hit the play button again.", this.map.maze.background[0].length * scale, 460);
     }
     run() {
         let self = this;

@@ -8,15 +8,12 @@ $(document).ready(function () {
         window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
     let game = new Game();
-    var lastTime = (new Date()).getTime(),
-        currentTime = 0,
-        delta = 0;
-    (function gameLoop() {
-        currentTime = (new Date()).getTime();
-        delta = (currentTime - lastTime) / 1000;
+
+    function loop() {
         game.update();
         game.run();
-        window.requestAnimationFrame(gameLoop);
-        lastTime = currentTime;
-    })();
+        requestAnimationFrame(loop);
+    }
+
+    loop();
 });
