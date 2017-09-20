@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b06a9e2c-ef06-4944-a626-9c30b6f7b31f" name="Default" comment="Updates">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Map.js" afterPath="$PROJECT_DIR$/js/Map.js" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="TD" />
+  </component>
+  <component name="FileColors">
+    <fileColor scope="Non-Project Files (Material Default)" color="415967" />
+    <fileColor scope="Non-Project Files (Material Darker)" color="474747" />
+    <fileColor scope="Non-Project Files (Material Lighter)" color="D2D4D5" />
+    <fileColor scope="Non-Project Files (Material Palenight)" color="4E5579" />
+    <fileColor scope="Non-Project Files (Material Default)" color="2E3C43" />
+    <fileColor scope="Non-Project Files (Material Darker)" color="323232" />
+    <fileColor scope="Non-Project Files (Material Lighter)" color="eae8e8" />
+    <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+              <folding>
+                <marker date="1505876779487" expanded="true" signature="1273:1387" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="SCSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>1080</find>
+      <find>600</find>
+      <find>this.types</find>
+      <find>ctx</find>
+      <find>'S'</find>
+      <find>'cru'</find>
+      <find>this.values.solid.value</find>
+      <find>urc</find>
+      <find>that</find>
+      <find>mouseY</find>
+      <find>64</find>
+      <find>32</find>
+      <find>tower</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>1216</replace>
+      <replace>643</replace>
+      <replace>types</replace>
+      <replace>ctx</replace>
+      <replace>types.</replace>
+      <replace>this.valuse.solid.value</replace>
+      <replace>this.values.corner_right_up.value</replace>
+      <replace>this.values.curve_right_up.value</replace>
+      <replace>this.values.solid</replace>
+      <replace>cru</replace>
+      <replace>this</replace>
+      <replace>mouse_drag.y</replace>
+      <replace>128</replace>
+      <replace>64</replace>
+      <replace>mob_normal</replace>
+      <replace>normal</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/js/mazes/level_1.txt" />
+        <option value="$PROJECT_DIR$/js/file-wrapper.js" />
+        <option value="$PROJECT_DIR$/js/line-navigator.js" />
+        <option value="$PROJECT_DIR$/js/pathing.js" />
+        <option value="$PROJECT_DIR$/js/pathing/Node.js" />
+        <option value="$PROJECT_DIR$/js/pathing/Graph.js" />
+        <option value="$PROJECT_DIR$/js/pathing/Pathing.js" />
+        <option value="$PROJECT_DIR$/js/sprite.js" />
+        <option value="$PROJECT_DIR$/js/Pathing.js" />
+        <option value="$PROJECT_DIR$/js/helpers.js" />
+        <option value="$PROJECT_DIR$/css/main.css" />
+        <option value="$PROJECT_DIR$/css/main.scss" />
+        <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/js/Sprites.js" />
+        <option value="$PROJECT_DIR$/js/Game.js" />
+        <option value="$PROJECT_DIR$/js/Map.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="495" />
+    <option name="y" value="103" />
+    <option name="width" value="1272" />
+    <option name="height" value="689" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TD" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TD" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Digital-Clock" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../../linuxbrew/.linuxbrew/bin/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\Programming\Web\TD\img" />
+      <recent name="$PROJECT_DIR$/js" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+    <configuration name="Game.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="Game.js" working-dir="$PROJECT_DIR$/js" />
+    <configuration name="Map.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="Map.js" working-dir="$PROJECT_DIR$/js" />
+    <configuration name="Sprites.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="Sprites.js" working-dir="$PROJECT_DIR$/js" />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <configuration name="index.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TD/index.html" />
+    <configuration name="index.html (2)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/Tower Defense/index.html" />
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/Tower Defense/index.html" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.Game.js" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.Map.js" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.Sprites.js" />
+      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.index.html (2)" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html (2)" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.Sprites.js" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.Map.js" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.Game.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b06a9e2c-ef06-4944-a626-9c30b6f7b31f" name="Default" comment="" />
+      <created>1497627371426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1497627371426</updated>
+      <workItem from="1497627373854" duration="19352000" />
+      <workItem from="1497658949611" duration="56000" />
+      <workItem from="1497659017356" duration="11430000" />
+      <workItem from="1497674012817" duration="270000" />
+      <workItem from="1497724381694" duration="3521000" />
+      <workItem from="1497752653730" duration="6525000" />
+      <workItem from="1497801369304" duration="9896000" />
+      <workItem from="1497813642062" duration="28467000" />
+      <workItem from="1497886661212" duration="27105000" />
+      <workItem from="1497919962884" duration="14992000" />
+      <workItem from="1497972659582" duration="3544000" />
+      <workItem from="1497995277703" duration="7565000" />
+      <workItem from="1498002880981" duration="28000" />
+      <workItem from="1498060947444" duration="16603000" />
+      <workItem from="1498084075526" duration="81000" />
+      <workItem from="1498084476770" duration="1819000" />
+      <workItem from="1498087347204" duration="1491000" />
+      <workItem from="1498146060905" duration="919000" />
+      <workItem from="1498151226219" duration="17000" />
+      <workItem from="1498161379733" duration="14000" />
+      <workItem from="1504894896531" duration="2352000" />
+      <workItem from="1505005073832" duration="43000" />
+      <workItem from="1505009495001" duration="84000" />
+      <workItem from="1505014114100" duration="149000" />
+      <workItem from="1505015430177" duration="1423000" />
+      <workItem from="1505018309539" duration="1976000" />
+      <workItem from="1505056011055" duration="10000" />
+      <workItem from="1505062116345" duration="666000" />
+      <workItem from="1505675641772" duration="52000" />
+      <workItem from="1505675695889" duration="3344000" />
+      <workItem from="1505876750045" duration="64000" />
+    </task>
+    <task id="LOCAL-00001" summary="Working mazing">
+      <created>1497647633418</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1497647633418</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated functionality. Tower selector is displayed. Cannot select tower though">
+      <created>1497895487950</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1497895487950</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updated functionality. Game is working, can select and place towers in proper position. Economy is next">
+      <created>1497899756492</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497899756492</updated>
+    </task>
+    <task id="LOCAL-00004" summary="WORKING!!!!!!!!!!!!!!!!!!!!!">
+      <created>1497900459621</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1497900459621</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updates">
+      <created>1497969247915</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1497969247915</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Health Bars">
+      <created>1497976167278</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1497976167278</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Draging">
+      <created>1498002898336</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1498002898336</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updates">
+      <created>1498082685725</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1498082685725</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updates">
+      <created>1498089206951</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1498089206951</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updates">
+      <created>1498147076061</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1498147076061</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Updates">
+      <created>1504894993223</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1504894993223</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Updates">
+      <created>1504895721793</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1504895721793</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Updates">
+      <created>1504895840773</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1504895840773</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Updates">
+      <created>1505009546064</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1505009546064</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Updates">
+      <created>1505014256189</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1505014256189</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Updates">
+      <created>1505062236196</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1505062236197</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updates">
+      <created>1505062459391</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1505062459391</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Updates">
+      <created>1505677240331</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1505677240331</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Updates">
+      <created>1505677411859</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1505677411859</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="167349000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="18" width="1922" height="1063" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09915612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872656" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39892474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971373" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working mazing" />
+    <MESSAGE value="Updated functionality. Tower selector is displayed. Cannot select tower though" />
+    <MESSAGE value="Updated functionality. Game is working, can select and place towers in proper position. Economy is next" />
+    <MESSAGE value="WORKING!!!!!!!!!!!!!!!!!!!!!" />
+    <MESSAGE value="Health Bars" />
+    <MESSAGE value="Draging" />
+    <MESSAGE value="Updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="6" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JavascriptDebugType">
+        <watch expression="this.money - this.tower_slots.active_slot.upgrade_cost" language="JavaScript" />
+        <watch expression="this.tower_slots.active_slot" language="JavaScript" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/img/PNG/Towers (red)/tower_09.png" />
+    <entry file="file://$PROJECT_DIR$/img/Sample.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/License.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/ken-fonts/license.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/green_panel.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/buttonStart.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/cross.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/Spritesheet/yellowSheet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button00.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button01.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button06.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button05.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button13.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button12.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button11.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/yellow_button09.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/preview.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/green_button13.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/green_button03.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/uipack_fixed/PNG/green_button00.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/Gird.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/Spritesheet/sheet_black1x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/star.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/power.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/phone.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/pause.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/open.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/musicOn.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/multiplayer.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Spritesheet/sheet_black1x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Spritesheet/sheet_colored1x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Spritesheet/sheet_colored2x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Spritesheet/sheet_white2x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/PNG/Black/2x/flag.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/left.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/next.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/rewind.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/gameicons-expansion/Game icons (base)/PNG/Black/2x/right.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/PNG/Retina/towerDefense_tile001.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/Tilesheet/towerDefense_tilesheet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/Tilesheet/towerDefense_tilesheet@2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram//media/nick/DATA/Documents/GitHub/Web/Tower Defense/js/main.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/js/main.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/js/Game.js</node>
+            <node x="" y="">$PROJECT_DIR$/js/Map.js</node>
+            <node x="" y="">$PROJECT_DIR$/js/Pathing.js</node>
+            <node x="" y="">$PROJECT_DIR$/js/Sprites.js</node>
+            <node x="" y="">$PROJECT_DIR$/js/helpers.js</node>
+            <node x="" y="">$PROJECT_DIR$/js/main.js#Game.js#115;/media/nick/DATA/Documents/GitHub/Web/Tower Defense/js/main.js#Map.js#79;/media/nick/DATA/Documents/GitHub/Web/Tower Defense/js/main.js#Pathing.js#59;/media/nick/DATA/Documents/GitHub/Web/Tower Defense/js/main.js#Sprites.js#95;/media/nick/DATA/Documents/GitHub/Web/Tower Defense/js/main.js#helpers.js#39;</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="254.0" y="206.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.scss" />
+    <entry file="file://$PROJECT_DIR$/js/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Pathing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="151" column="1" lean-forward="true" selection-start-line="151" selection-start-column="1" selection-end-line="151" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc;n#Node#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Sprites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="97" column="12" lean-forward="false" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+          <folding>
+            <marker date="1505675684515" expanded="true" signature="0:41" ph="/** Created by komar on 6/17/2017. ...*/" />
+            <marker date="1505675684515" expanded="false" signature="56:1206" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="120:401" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="417:576" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="590:733" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="753:1063" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1076:1204" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="1238:1371" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1265:1369" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="1384:1868" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1428:1597" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1612:1771" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1782:1865" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1896:5719" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="1926:3185" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="2333:2476" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="2533:2676" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="2682:2723" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="3205:3375" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="3395:4318" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="3441:4291" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="3859:4281" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="3906:4267" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="3996:4216" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="4106:4194" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="4335:4838" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="4854:5105" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="5118:5179" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="5191:5440" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="5455:5717" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="5752:6984" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="5782:5983" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="5997:6056" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6079:6198" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6218:6431" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6244:6425" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6446:6982" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6476:6687" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6506:6647" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6693:6782" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6722:6772" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6806:6934" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6940:6976" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="6994:8544" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7014:7611" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7651:8244" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7676:7738" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7744:7796" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7825:7890" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7896:7948" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="7972:8034" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8040:8092" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8116:8179" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8185:8238" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8257:8542" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8423:8465" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8494:8536" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="8571:8707" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8601:8705" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="8735:8871" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8765:8869" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="8884:9611" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="8913:9213" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9046:9134" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9232:9495" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9380:9468" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9506:9609" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9557:9603" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="9638:10172" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9667:9701" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9720:10056" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="9941:10029" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="10067:10170" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="10118:10164" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="10205:10398" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="10235:10396" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="10425:10561" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="10455:10559" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="10588:10724" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="10618:10722" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="10750:14499" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="10786:11354" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11365:11543" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11415:11460" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11466:11512" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11556:11735" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11607:11652" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11658:11704" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11748:11928" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11799:11844" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11850:11896" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11942:12120" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="11993:12038" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12044:12090" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12133:13364" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12182:13310" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12252:12457" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12463:13300" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12508:12679" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12712:12882" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="12915:13085" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13118:13286" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13316:13358" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13377:13736" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13420:13456" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13465:13730" ph="//..." />
+            <marker date="1505675684515" expanded="true" signature="13753:14496" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13790:13939" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="13972:14123" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="14156:14306" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="14339:14490" ph="{...}" />
+            <marker date="1505675684515" expanded="false" signature="14526:15311" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="14556:14813" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="14826:15155" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15168:15309" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15219:15255" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15261:15303" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15371:15577" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15588:15883" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15638:15724" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15730:15818" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15896:16190" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="15947:16033" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16039:16127" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16203:16499" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16254:16340" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16346:16434" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16513:16805" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16564:16650" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16656:16744" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16818:18049" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16867:17995" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="16937:17142" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="17148:17985" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="17193:17364" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="17397:17567" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="17600:17770" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="17803:17971" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="18001:18043" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="18061:18420" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="18104:18140" ph="{...}" />
+            <marker date="1505675684515" expanded="true" signature="18149:18414" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="11" column="99" lean-forward="false" selection-start-line="11" selection-start-column="99" selection-end-line="11" selection-end-column="99" />
+          <folding>
+            <element signature="e#9535#12148#0" expanded="false" />
+            <element signature="n#!!block;n#build#0;n#Map#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="224" column="65" lean-forward="false" selection-start-line="224" selection-start-column="65" selection-end-line="224" selection-end-column="65" />
+          <folding>
+            <marker date="1505677403267" expanded="true" signature="73:444" ph="{...}" />
+            <marker date="1505677403267" expanded="true" signature="10034:10240" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <folding>
+            <marker date="1505876779487" expanded="true" signature="1273:1387" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

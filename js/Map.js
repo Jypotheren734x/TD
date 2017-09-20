@@ -7,7 +7,7 @@ class Map {
         this.decorations = [];
         this.maze = {
             background: [
-                ['S', 'S', 'S', 'S', 'cru', 't', 't', 't', 't', 'clu', 'S', 'S', 'S', 'S', 'cru', 't', 't', 't', 't', 'clu', 'S', 'S', 'S', 'S'],
+                ['S', 'S', 'S', 'S', 'cru', 't', 't', 't', 't', 'clu', 'B', 'S', 'S', 'S', 'cru', 't', 't', 't', 't', 'clu', 'S', 'S', 'S', 'S'],
                 ['S', 'B', 'S', 'S', 'l', 'ctl', 'b', 'b', 'ctr', 'r', 'S', 'S', 'S', 'S', 'l', 'ctl', 'b', 'b', 'ctr', 'r', 'S', 'S', 'S', 'S'],
                 ['S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'B', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'B', 'S'],
                 ['S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S', 'l', 'r', 'S', 'S', 'l', 'r', 'S', 'S', 'S', 'S'],
